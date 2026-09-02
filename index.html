@@ -1063,6 +1063,26 @@
             'Best for people who care about user experience and enjoy turning problems into clear design solutions.',
             'A strong fit for thoughtful, collaborative learners who enjoy interviews, testing, and iteration.'
           ]
+        },
+        {
+          id: 'systems-consultant',
+          name: 'RP / Systems Consultant',
+          label: 'Systems & Business Solutions',
+          summary: 'Helps organizations configure, implement, and optimize enterprise systems like SAP and Salesforce to support business operations.',
+          dayToDay: [
+            'Gather business requirements and translate them into system configuration or process recommendations.',
+            'Configure enterprise platforms to match workflows, reporting, and business rules.',
+            'Work with stakeholders across departments to improve adoption and process efficiency.',
+            'Troubleshoot issues, support testing, and help teams implement new system capabilities.'
+          ],
+          skills: ['SAP', 'Salesforce', 'Business process analysis', 'Requirements gathering', 'Data mapping', 'System implementation'],
+          entryLevel: 'Entry-level systems consultants often need strong business communication skills, a basic understanding of ERP or CRM systems, and the ability to translate stakeholder needs into practical solutions. Internships, project work, and certifications can help a lot.',
+          salary: '$70,000 - $120,000',
+          traits: ['Business-minded', 'Communicative', 'Problem-solver', 'Comfortable working across teams'],
+          highlights: [
+            'Best for people who enjoy the intersection of business process, technology, and client support.',
+            'A strong fit for organized thinkers who are good at communication and process improvement.'
+          ]
         }
       ];
 
@@ -1072,46 +1092,46 @@
         {
           prompt: 'When you are solving a problem, you usually start by:',
           options: [
-            { text: 'Looking for the patterns in the information and what it means.', score: { 'data-analyst': 2, 'software-developer': 1, 'cybersecurity-analyst': 1, 'ux-designer': 1 } },
-            { text: 'Thinking through how to build or improve a system.', score: { 'software-developer': 2, 'data-analyst': 1, 'cybersecurity-analyst': 1, 'ux-designer': 1 } },
-            { text: 'Checking for risk, security issues, or weak points.', score: { 'cybersecurity-analyst': 2, 'software-developer': 1, 'data-analyst': 1, 'ux-designer': 0 } },
-            { text: 'Understanding how people feel and what they need.', score: { 'ux-designer': 2, 'data-analyst': 1, 'software-developer': 1, 'cybersecurity-analyst': 0 } }
+            { text: 'Looking for the patterns in the information and what it means.', score: { 'data-analyst': 2, 'software-developer': 1, 'cybersecurity-analyst': 1, 'ux-designer': 1, 'systems-consultant': 1 } },
+            { text: 'Thinking through how to build or improve a system.', score: { 'software-developer': 2, 'data-analyst': 1, 'cybersecurity-analyst': 1, 'ux-designer': 1, 'systems-consultant': 1 } },
+            { text: 'Checking for risk, security issues, or weak points.', score: { 'cybersecurity-analyst': 2, 'software-developer': 1, 'data-analyst': 1, 'ux-designer': 0, 'systems-consultant': 1 } },
+            { text: 'Understanding how people feel and what they need.', score: { 'ux-designer': 2, 'data-analyst': 1, 'software-developer': 1, 'cybersecurity-analyst': 0, 'systems-consultant': 1 } }
           ]
         },
         {
           prompt: 'Which workstyle sounds most like you?',
           options: [
-            { text: 'I like turning messy information into clear insights.', score: { 'data-analyst': 2, 'cybersecurity-analyst': 1, 'software-developer': 1, 'ux-designer': 1 } },
-            { text: 'I enjoy creating tools and solving technical problems.', score: { 'software-developer': 2, 'data-analyst': 1, 'cybersecurity-analyst': 1, 'ux-designer': 1 } },
-            { text: 'I like identifying threats and protecting systems.', score: { 'cybersecurity-analyst': 2, 'software-developer': 1, 'data-analyst': 1, 'ux-designer': 1 } },
-            { text: 'I enjoy researching people and improving experiences.', score: { 'ux-designer': 2, 'data-analyst': 1, 'software-developer': 1, 'cybersecurity-analyst': 0 } }
+            { text: 'I like turning messy information into clear insights.', score: { 'data-analyst': 2, 'cybersecurity-analyst': 1, 'software-developer': 1, 'ux-designer': 1, 'systems-consultant': 1 } },
+            { text: 'I enjoy creating tools and solving technical problems.', score: { 'software-developer': 2, 'data-analyst': 1, 'cybersecurity-analyst': 1, 'ux-designer': 1, 'systems-consultant': 1 } },
+            { text: 'I like identifying threats and protecting systems.', score: { 'cybersecurity-analyst': 2, 'software-developer': 1, 'data-analyst': 1, 'ux-designer': 1, 'systems-consultant': 1 } },
+            { text: 'I enjoy researching people and improving experiences.', score: { 'ux-designer': 2, 'data-analyst': 1, 'software-developer': 1, 'cybersecurity-analyst': 0, 'systems-consultant': 1 } }
           ]
         },
         {
           prompt: 'What kind of project excites you most?',
           options: [
-            { text: 'A dashboard that helps a team make better decisions.', score: { 'data-analyst': 2, 'software-developer': 1, 'ux-designer': 1, 'cybersecurity-analyst': 0 } },
-            { text: 'A new app, website, or tool that people use every day.', score: { 'software-developer': 2, 'ux-designer': 2, 'data-analyst': 1, 'cybersecurity-analyst': 0 } },
-            { text: 'Protecting systems from attacks or vulnerabilities.', score: { 'cybersecurity-analyst': 2, 'software-developer': 1, 'data-analyst': 1, 'ux-designer': 0 } },
-            { text: 'Understanding users and designing simpler, better experiences.', score: { 'ux-designer': 2, 'software-developer': 1, 'data-analyst': 0, 'cybersecurity-analyst': 0 } }
+            { text: 'A dashboard that helps a team make better decisions.', score: { 'data-analyst': 2, 'software-developer': 1, 'ux-designer': 1, 'cybersecurity-analyst': 0, 'systems-consultant': 2 } },
+            { text: 'A new app, website, or tool that people use every day.', score: { 'software-developer': 2, 'ux-designer': 2, 'data-analyst': 1, 'cybersecurity-analyst': 0, 'systems-consultant': 1 } },
+            { text: 'Protecting systems from attacks or vulnerabilities.', score: { 'cybersecurity-analyst': 2, 'software-developer': 1, 'data-analyst': 1, 'ux-designer': 0, 'systems-consultant': 1 } },
+            { text: 'Understanding users and designing simpler, better experiences.', score: { 'ux-designer': 2, 'software-developer': 1, 'data-analyst': 0, 'cybersecurity-analyst': 0, 'systems-consultant': 1 } }
           ]
         },
         {
           prompt: 'In a team setting, you are most likely to be the person who:',
           options: [
-            { text: 'Finds the facts, reads the data, and explains the meaning.', score: { 'data-analyst': 2, 'ux-designer': 1, 'software-developer': 1, 'cybersecurity-analyst': 1 } },
-            { text: 'Builds and tests a digital solution.', score: { 'software-developer': 2, 'ux-designer': 1, 'data-analyst': 0, 'cybersecurity-analyst': 1 } },
-            { text: 'Looks for vulnerabilities and keeps systems safe.', score: { 'cybersecurity-analyst': 2, 'software-developer': 1, 'data-analyst': 0, 'ux-designer': 0 } },
-            { text: 'Listens to user feedback and turns it into better design.', score: { 'ux-designer': 2, 'software-developer': 1, 'data-analyst': 1, 'cybersecurity-analyst': 0 } }
+            { text: 'Finds the facts, reads the data, and explains the meaning.', score: { 'data-analyst': 2, 'ux-designer': 1, 'software-developer': 1, 'cybersecurity-analyst': 1, 'systems-consultant': 1 } },
+            { text: 'Builds and tests a digital solution.', score: { 'software-developer': 2, 'ux-designer': 1, 'data-analyst': 0, 'cybersecurity-analyst': 1, 'systems-consultant': 1 } },
+            { text: 'Looks for vulnerabilities and keeps systems safe.', score: { 'cybersecurity-analyst': 2, 'software-developer': 1, 'data-analyst': 0, 'ux-designer': 0, 'systems-consultant': 1 } },
+            { text: 'Listens to user feedback and turns it into better design.', score: { 'ux-designer': 2, 'software-developer': 1, 'data-analyst': 1, 'cybersecurity-analyst': 0, 'systems-consultant': 1 } }
           ]
         },
         {
           prompt: 'Which environment sounds the most motivating?',
           options: [
-            { text: 'A business setting where decisions are driven by performance data.', score: { 'data-analyst': 2, 'software-developer': 1, 'cybersecurity-analyst': 1, 'ux-designer': 1 } },
-            { text: 'A technical environment where I can code, debug, and build.', score: { 'software-developer': 2, 'cybersecurity-analyst': 1, 'data-analyst': 1, 'ux-designer': 1 } },
-            { text: 'A security-focused environment where risk and threat detection matter most.', score: { 'cybersecurity-analyst': 2, 'software-developer': 1, 'data-analyst': 0, 'ux-designer': 0 } },
-            { text: 'A user-centered environment where design and empathy drive decisions.', score: { 'ux-designer': 2, 'software-developer': 1, 'data-analyst': 0, 'cybersecurity-analyst': 0 } }
+            { text: 'A business setting where decisions are driven by performance data.', score: { 'data-analyst': 2, 'software-developer': 1, 'cybersecurity-analyst': 1, 'ux-designer': 1, 'systems-consultant': 2 } },
+            { text: 'A technical environment where I can code, debug, and build.', score: { 'software-developer': 2, 'cybersecurity-analyst': 1, 'data-analyst': 1, 'ux-designer': 1, 'systems-consultant': 1 } },
+            { text: 'A security-focused environment where risk and threat detection matter most.', score: { 'cybersecurity-analyst': 2, 'software-developer': 1, 'data-analyst': 0, 'ux-designer': 0, 'systems-consultant': 1 } },
+            { text: 'A user-centered environment where design and empathy drive decisions.', score: { 'ux-designer': 2, 'software-developer': 1, 'data-analyst': 0, 'cybersecurity-analyst': 0, 'systems-consultant': 1 } }
           ]
         }
       ];
@@ -1327,6 +1347,58 @@
             question: 'What makes a design effective from a business standpoint as well as a user standpoint?',
             answer: 'An effective design solves a real user problem while also supporting business goals such as conversion, retention, efficiency, or trust. It balances usability with clarity, speed, and strategic priorities. A strong designer looks at both sides: how the product works for the user and how it supports the company’s objectives without adding unnecessary friction or complexity.'
           }
+        ],
+        'systems-consultant': [
+          {
+            type: 'technical',
+            question: 'How would you approach gathering requirements for a new ERP or CRM implementation?',
+            answer: 'I would start by understanding the business problem, stakeholders, current pain points, and success criteria. Then I would interview department leaders, observe current workflows, map process gaps, and document requirements in a way that separates business needs from system preferences. I would also clarify reporting, compliance, and change-management needs so the solution aligns with the organization’s goals instead of just its immediate requests.'
+          },
+          {
+            type: 'technical',
+            question: 'What is the difference between a business requirement and a system requirement?',
+            answer: 'A business requirement describes what the organization needs to achieve, such as improving customer onboarding or reducing manual data entry. A system requirement describes the technical or functional capabilities needed to support that goal, such as workflow automation, reporting fields, or integration points. I would separate the two so the team can evaluate both business value and technical feasibility clearly.'
+          },
+          {
+            type: 'technical',
+            question: 'How would you explain a gap analysis to a client who is implementing Salesforce or SAP?',
+            answer: 'I would explain that a gap analysis compares the company’s current business processes and capabilities against the desired future state in the new system. It helps identify where the system can support the process, where configuration is needed, and where user process changes are required. This is useful because it prevents teams from assuming the software will solve all problems without considering process design and adoption.'
+          },
+          {
+            type: 'technical',
+            question: 'Why is change management important when implementing a new enterprise system?',
+            answer: 'Change management matters because even a good technology solution can fail if users do not understand it, trust it, or know how to use it. A strong implementation plan includes training, communication, stakeholder engagement, and support during adoption. Without that, teams may continue using old workarounds, data quality can suffer, and the business does not get the expected ROI.'
+          },
+          {
+            type: 'technical',
+            question: 'How would you handle conflicting requirements from two departments during an implementation project?',
+            answer: 'I would first clarify the business goals behind each requirement, then look for the root issue rather than the surface preference. I would compare the impact on process, cost, timeline, and data quality, and document the tradeoffs clearly. If a conflict remains, I would help stakeholders prioritize based on business value and define a workable compromise that supports the overall implementation strategy.'
+          },
+          {
+            type: 'technical',
+            question: 'What is the value of process mapping when implementing an enterprise platform?',
+            answer: 'Process mapping helps the team visualize how work flows today, where bottlenecks exist, and what should change in the future system. It reduces misunderstandings and helps identify where automation, approval steps, or integration points are needed. I would use it to align business processes with system capabilities before configuration begins.'
+          },
+          {
+            type: 'technical',
+            question: 'How do you decide whether a business issue should be solved through configuration, customization, or an integration?',
+            answer: 'I would consider the business need, the standard capabilities of the platform, and the cost of complexity. If the requirement can be met through configuration, that is usually the simplest and safest approach. If the process is unique and needs significant behavior changes, customization may be needed, but it increases risk and maintenance. If data or workflows need to connect across systems, an integration is usually the right approach.'
+          },
+          {
+            type: 'behavioral',
+            question: 'Tell me about a time you had to translate technical information into business language for a stakeholder.',
+            answer: 'A strong answer would show communication and simplification. For example: “I had to explain a system issue to a department manager who was not technical. I translated the technical details into terms around process impact, business risk, and next steps, and I focused on the outcome rather than the system itself. That helped the stakeholder understand the decision we needed and why the change mattered to the business.”'
+          },
+          {
+            type: 'technical',
+            question: 'Why is data quality a major concern in an ERP or CRM rollout?',
+            answer: 'Data quality affects reporting, automation, customer experience, and decision-making. If data is incomplete, inconsistent, or poorly mapped, the system can produce incorrect outputs and create confusion across departments. I would validate source data, define cleanup rules, and agree on ownership before go-live to reduce risks and improve trust in the new system.'
+          },
+          {
+            type: 'technical',
+            question: 'How would you measure the success of a system implementation after go-live?',
+            answer: 'I would measure success by whether the solution supports the original business goals, such as faster processes, better visibility, fewer manual tasks, and higher user adoption. I would review adoption metrics, process times, error rates, user feedback, and reporting quality. If the system is not delivering value, I would re-evaluate the process design or training plan and make targeted improvements.'
+          }
         ]
       };
 
@@ -1458,6 +1530,7 @@
           'cybersecurity-analyst': 0,
           'software-developer': 0,
           'ux-designer': 0,
+          'systems-consultant': 0,
         };
 
         let answeredAll = true;
