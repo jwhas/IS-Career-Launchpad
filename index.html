@@ -272,6 +272,14 @@
         margin-top: 26px;
       }
 
+      .page {
+        display: none;
+      }
+
+      .page.active {
+        display: block;
+      }
+
       .quiz-box {
         background: var(--panel);
         border: 1px solid var(--line);
@@ -506,123 +514,146 @@
       <div class="container topbar-inner">
         <div class="brand">IS Career Launchpad</div>
         <nav class="nav" aria-label="Main navigation">
-          <a href="#about">What is IS?</a>
+          <a href="#" data-page-nav="home-page">Home</a>
           <a href="#explore">Career Paths</a>
-          <a href="#quiz">Quiz</a>
-          <a href="#interview">Interview Prep</a>
+          <a href="#" data-page-nav="behavioral-page">Behavioral Interview Practice</a>
+          <a href="#" data-page-nav="technical-page">Technical Interview Practice</a>
         </nav>
       </div>
     </header>
 
     <main>
-      <section class="hero">
-        <div class="container hero-grid">
-          <div>
-            <span class="eyebrow">Information Systems</span>
-            <h1>Build a career at the intersection of business, technology, and people.</h1>
+      <section id="home-page" class="page active">
+        <section class="hero">
+          <div class="container hero-grid">
+            <div>
+              <span class="eyebrow">Information Systems</span>
+              <h1>Build a career at the intersection of business, technology, and people.</h1>
+              <p>
+                Information Systems (IS) is the field where business problems meet digital tools.
+                IS professionals design systems, analyze data, secure information, and create experiences
+                that help organizations run smarter and serve people better.
+              </p>
+              <div class="cta-row">
+                <button class="btn btn-primary" data-target="quiz">Take the career fit quiz</button>
+                <button class="btn btn-secondary" data-target="explore">Explore career paths</button>
+              </div>
+              <div class="cta-row">
+                <button class="btn btn-secondary" data-page-nav="behavioral-page">Behavioral Interview Practice</button>
+                <button class="btn btn-primary" data-page-nav="technical-page">Technical Interview Practice</button>
+              </div>
+            </div>
+
+            <div class="video-card">
+              <iframe
+                src="https://www.youtube.com/embed/tgbNymZ7vqY"
+                title="Introduction video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+        </section>
+
+        <section id="about" class="section">
+          <div class="container">
+            <h2>What is Information Systems?</h2>
             <p>
-              Information Systems (IS) is the field where business problems meet digital tools.
-              IS professionals design systems, analyze data, secure information, and create experiences
-              that help organizations run smarter and serve people better.
+              Information Systems is a broad career field focused on using technology to improve how
+              organizations operate. It includes everything from managing databases and analyzing trends,
+              to developing software, protecting company systems, and improving the digital experiences
+              people use every day.
             </p>
+
+            <div class="intro-grid">
+              <div class="info-card">
+                <h3>Business + Tech</h3>
+                <p>IS professionals solve real business challenges using technology, processes, and strategy.</p>
+              </div>
+              <div class="info-card">
+                <h3>Problem Solving</h3>
+                <p>They connect data, tools, and user needs to improve operations and decision-making.</p>
+              </div>
+              <div class="info-card">
+                <h3>People + Systems</h3>
+                <p>IS work is about making systems easier for people to understand, use, and trust.</p>
+              </div>
+              <div class="info-card">
+                <h3>Career Variety</h3>
+                <p>There are paths in data, cybersecurity, software, design, and many other business-facing roles.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section choice-panel">
+          <div class="container">
+            <h2>Choose your next step</h2>
+            <div class="option-grid">
+              <button class="option-card" data-target="quiz">
+                <strong>Option 1</strong>
+                <h3>Career Fit Quiz</h3>
+                <p>Answer a few quick questions to discover which Information Systems roles may fit you best.</p>
+              </button>
+              <button class="option-card" data-target="explore">
+                <strong>Option 2</strong>
+                <h3>Explore the Careers</h3>
+                <p>Browse the main IS job paths, compare responsibilities, and learn what each role is like.</p>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section id="quiz" class="section panel hidden">
+          <div class="container">
+            <h2>Career Path Discovery Quiz</h2>
+            <p>
+              This quick test is designed to point you toward two good-fit roles within Information Systems.
+              Choose the answer that feels most natural to you.
+            </p>
+
+            <div class="quiz-box" id="quizContainer"></div>
             <div class="cta-row">
-              <button class="btn btn-primary" data-target="quiz">Take the career fit quiz</button>
-              <button class="btn btn-secondary" data-target="explore">Explore career paths</button>
+              <button id="submitQuiz" class="btn btn-primary">See my matches</button>
+            </div>
+            <div id="quizResults" class="results-box hidden"></div>
+          </div>
+        </section>
+
+        <section id="explore" class="section panel">
+          <div class="container">
+            <h2>Career Paths in Information Systems</h2>
+            <div id="roleTabs" class="role-tabs" aria-label="Career role tabs"></div>
+
+            <div class="role-layout">
+              <aside id="roleCard" class="role-card"></aside>
+              <div id="roleDetail" class="detail-card"></div>
             </div>
           </div>
-
-          <div class="video-card">
-            <iframe
-              src="https://www.youtube.com/embed/tgbNymZ7vqY"
-              title="Introduction video"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            ></iframe>
-          </div>
-        </div>
+        </section>
       </section>
 
-      <section id="about" class="section">
-        <div class="container">
-          <h2>What is Information Systems?</h2>
-          <p>
-            Information Systems is a broad career field focused on using technology to improve how
-            organizations operate. It includes everything from managing databases and analyzing trends,
-            to developing software, protecting company systems, and improving the digital experiences
-            people use every day.
-          </p>
-
-          <div class="intro-grid">
-            <div class="info-card">
-              <h3>Business + Tech</h3>
-              <p>IS professionals solve real business challenges using technology, processes, and strategy.</p>
-            </div>
-            <div class="info-card">
-              <h3>Problem Solving</h3>
-              <p>They connect data, tools, and user needs to improve operations and decision-making.</p>
-            </div>
-            <div class="info-card">
-              <h3>People + Systems</h3>
-              <p>IS work is about making systems easier for people to understand, use, and trust.</p>
-            </div>
-            <div class="info-card">
-              <h3>Career Variety</h3>
-              <p>There are paths in data, cybersecurity, software, design, and many other business-facing roles.</p>
+      <section id="behavioral-page" class="page">
+        <div class="container" style="padding: 40px 0 60px;">
+          <h2>Behavioral Interview Practice</h2>
+          <div class="info-card">
+            <h3>Coming next</h3>
+            <p>
+              This page is dedicated to behavioral interview practice and will be built separately by your coworker.
+              The technical interview practice lives on its own page.
+            </p>
+            <div class="cta-row" style="margin-top: 18px;">
+              <button class="btn btn-secondary" data-page-nav="home-page">Back to Home</button>
+              <button class="btn btn-primary" data-page-nav="technical-page">Technical Interview Practice</button>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="section choice-panel">
-        <div class="container">
-          <h2>Choose your next step</h2>
-          <div class="option-grid">
-            <button class="option-card" data-target="quiz">
-              <strong>Option 1</strong>
-              <h3>Career Fit Quiz</h3>
-              <p>Answer a few quick questions to discover which Information Systems roles may fit you best.</p>
-            </button>
-            <button class="option-card" data-target="explore">
-              <strong>Option 2</strong>
-              <h3>Explore the Careers</h3>
-              <p>Browse the main IS job paths, compare responsibilities, and learn what each role is like.</p>
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <section id="quiz" class="section panel hidden">
-        <div class="container">
-          <h2>Career Path Discovery Quiz</h2>
-          <p>
-            This quick test is designed to point you toward two good-fit roles within Information Systems.
-            Choose the answer that feels most natural to you.
-          </p>
-
-          <div class="quiz-box" id="quizContainer"></div>
-          <div class="cta-row">
-            <button id="submitQuiz" class="btn btn-primary">See my matches</button>
-          </div>
-          <div id="quizResults" class="results-box hidden"></div>
-        </div>
-      </section>
-
-      <section id="explore" class="section panel">
-        <div class="container">
-          <h2>Career Paths in Information Systems</h2>
-          <div id="roleTabs" class="role-tabs" aria-label="Career role tabs"></div>
-
-          <div class="role-layout">
-            <aside id="roleCard" class="role-card"></aside>
-            <div id="roleDetail" class="detail-card"></div>
-          </div>
-        </div>
-      </section>
-
-      <section id="interview" class="section">
-        <div class="container">
-          <h2>Interview Prep</h2>
-          <p>Practice realistic questions for entry-level IS roles. Type your answer and reveal a stronger sample response.</p>
+      <section id="technical-page" class="page">
+        <div class="container" style="padding: 40px 0 60px;">
+          <h2>Technical Interview Practice</h2>
+          <p>Practice realistic role-specific technical questions for entry-level IS jobs. Type your answer and reveal a stronger sample response.</p>
 
           <div class="interview-controls">
             <label for="roleSelect">Choose a role</label><br />
@@ -630,6 +661,11 @@
           </div>
 
           <div id="interviewQuestions"></div>
+
+          <div class="cta-row" style="margin-top: 20px;">
+            <button class="btn btn-secondary" data-page-nav="home-page">Back to Home</button>
+            <button class="btn btn-primary" data-page-nav="behavioral-page">Behavioral Interview Practice</button>
+          </div>
         </div>
       </section>
     </main>
@@ -782,73 +818,214 @@
 
       // Interview questions for each role.
       // These are stored as plain objects so the app can render them dynamically.
+      // The content is intentionally more difficult and role-specific than a generic interview list.
       const interviewBank = {
         'data-analyst': [
           {
-            type: 'behavioral',
-            question: 'Tell me about a time you had to solve a problem using incomplete or messy information.',
-            answer: 'A strong answer would explain the situation, the issue with the data, the process you used to clean or verify it, and the result. For example: “I once worked on a project where the spreadsheet had duplicate records and missing values, so I first cleaned the dataset, checked for inconsistencies, and compared the data against the source report. Once the data was reliable, I identified the trend and shared a simple summary with the team, which allowed us to focus on the real issue instead of chasing unreliable numbers.”'
+            type: 'technical',
+            question: 'A sales dashboard shows a sharp increase in conversion rate, but revenue is down. What are the first things you would investigate?',
+            answer: 'I would first confirm whether the conversion lift is real and whether it came from a large volume of low-value orders, discounting, or a change in product mix. I would check the data quality, segment by customer type and product line, review average order value, and compare the period against historical patterns. If the conversion metric rose while revenue fell, that usually means the conversion may have improved in quantity but not in value, so I would look for a shift in customer behavior, pricing, or acquisition quality.'
           },
           {
             type: 'technical',
-            question: 'How would you explain a trend in sales data to a manager who is not technical?',
-            answer: 'A strong answer would emphasize translating technical insights into business language. For example: “I would focus on the business story: what changed, why it matters, and what action should be taken. I would highlight the key numbers, explain the trend in plain language, and connect it to business outcomes such as revenue, customer behavior, or product performance.”'
+            question: 'How would you handle duplicate rows or missing values in a customer dataset before running analysis?',
+            answer: 'I would begin by profiling the dataset to understand the source of the issues. I would remove or merge exact duplicates, validate whether missing values are real gaps or defaults, and document assumptions. I would also check whether the same customer appears under different IDs or spellings, because that can distort counts and trends. Once cleaned, I would preserve a data dictionary and a log of what was changed so the analysis is transparent and reproducible.'
+          },
+          {
+            type: 'technical',
+            question: 'What is the difference between correlation and causation, and why is that important in business analysis?',
+            answer: 'Correlation means two variables move together, while causation means one variable directly influences the other. In business analysis, that matters because a strong correlation can be misleading. For example, a spike in ice cream sales and a spike in drownings are correlated but not caused by each other. I would avoid making a recommendation based solely on a correlation and instead look for business context, experiments, or additional data to determine whether the relationship is causal.'
+          },
+          {
+            type: 'technical',
+            question: 'How would you explain KPI performance to a nontechnical manager who is concerned about a decline in performance?',
+            answer: 'I would frame the issue around business impact and action, not technical jargon. I would identify which KPI moved, how much it changed, whether the change is statistically meaningful, and whether the trend is isolated to one segment or department. Then I would explain the likely reasons for the decline, such as seasonality, lower traffic, process issues, or changes in customer behavior, and recommend the next actions to test or investigate.'
+          },
+          {
+            type: 'technical',
+            question: 'If a report shows two datasets with different totals for the same metric, what would you do?',
+            answer: 'I would first validate the definitions of the metric in both datasets to see whether they are actually measuring the same thing. I would check date ranges, filters, unit conversions, joins, and any aggregation logic. If the totals still differ, I would trace the data lineage to identify where values were dropped or duplicated. I would document the discrepancy and reconcile the sources before presenting the final result.'
+          },
+          {
+            type: 'technical',
+            question: 'What is a pivot table useful for, and when would you use it in a business setting?',
+            answer: 'A pivot table is useful when I need to quickly summarize large amounts of data across categories and dimensions. For example, I could group sales by region, product, and month to see which combinations are performing best. It helps me reveal patterns, compare performance across segments, and identify where to focus attention or investigate anomalies without writing complex code for every view.'
+          },
+          {
+            type: 'technical',
+            question: 'How would you measure whether a marketing campaign is actually effective?',
+            answer: 'I would define the business goal first, such as leads, revenue, signups, or retention. Then I would compare performance before and after the campaign, measure conversion rates, cost per acquisition, and return on investment, and segment the results by channel or audience. I would also look for unintended effects, such as low-quality leads or a drop in retention, and if possible, compare the campaign against a control group to determine whether the results are actually attributable to the campaign.'
           },
           {
             type: 'behavioral',
-            question: 'Describe a time you had to make a decision with limited information.',
-            answer: 'A strong answer would show structured thinking. For example: “I had to choose which metric to prioritize for a project when the data was limited. I reviewed the most reliable source, narrowed the problem to the business goal, and used the information we did have to make a practical recommendation while documenting assumptions and follow-up checks.”'
+            question: 'Tell me about a time you had to make a recommendation from imperfect or incomplete data. How did you handle the uncertainty?',
+            answer: 'A strong answer would show structured thinking and communication. For example: “I was working on a project where the data was incomplete and had some gaps that made the conclusion uncertain. I first identified the most reliable sources, cleaned the records I could validate, and documented where assumptions were needed. I then presented the recommendation with a clear explanation of the confidence level and the next data checks needed, so the team could make a business decision without pretending the data was perfect.”'
+          },
+          {
+            type: 'technical',
+            question: 'Why is data quality important, and what are examples of quality issues you would look for?',
+            answer: 'Data quality is important because poor-quality data leads to bad decisions. Examples of quality issues include duplicate records, missing values, inconsistent naming, incorrect date formats, outdated records, and mismatched fields across systems. I would validate data against the source systems, check for completeness and consistency, and document cleaning steps so stakeholders understand whether the numbers are trustworthy.'
+          },
+          {
+            type: 'technical',
+            question: 'How would you identify which metric is the best indicator of business performance in a given scenario?',
+            answer: 'I would start with the business objective and ask which metric most directly reflects success. For example, if the goal is customer retention, the most meaningful metric may be retention rate rather than total signups. I would also consider whether the metric is actionable, measurable, and timely, and then combine it with context such as segment performance, trend direction, and operational constraints to make a stronger recommendation.'
           }
         ],
         'cybersecurity-analyst': [
           {
-            type: 'behavioral',
-            question: 'Tell me about a time you had to stay calm while handling a problem or alert.',
-            answer: 'A strong answer would show composure and process. For example: “When I noticed a suspicious login pattern, I stayed calm, verified the alert, checked for signs of compromise, and reviewed the logs before deciding on next steps. I documented my findings clearly and escalated the issue appropriately, which helped the team respond quickly without overreacting.”'
+            type: 'technical',
+            question: 'How would you investigate a suspicious login event involving a user account from an unusual location and a new device?',
+            answer: 'I would verify whether the alert is legitimate by checking account activity, login history, network metadata, and whether the user had recently changed a password or device. I would look for signs such as impossible travel, failed MFA attempts, or unusual access times. If the activity is suspicious, I would isolate the account, force a password reset, review privilege changes, and escalate according to the company’s incident-response procedure.'
           },
           {
             type: 'technical',
-            question: 'How would you investigate a possible security alert on a user account?',
-            answer: 'A strong answer would show a step-by-step process: verify whether the alert is real, check login history, review device and location patterns, confirm whether the user was actively accessing the system, and look for suspicious requests or permission changes. I would document findings and escalate if there is evidence of compromise.'
+            question: 'What is the purpose of a firewall, and how does it differ from an antivirus tool?',
+            answer: 'A firewall controls network traffic based on rules and policies, helping block unauthorized access and limit communication paths. Antivirus software focuses on detecting, preventing, and removing malicious files or code on an endpoint. Both are important, but they protect different layers of the environment and work best together as part of a broader security strategy.'
+          },
+          {
+            type: 'technical',
+            question: 'Explain why patch management matters in cybersecurity and what risks are created by delayed updates.',
+            answer: 'Patch management matters because software vulnerabilities are often exploited when organizations delay updates. If systems are not patched, attackers may exploit known weaknesses to gain access, escalate privileges, or move laterally through the network. A strong security team prioritizes risk-based patching, especially for internet-facing systems and critical applications, and verifies that the fixes are deployed without disrupting business operations.'
+          },
+          {
+            type: 'technical',
+            question: 'What are some indicators that a system might be compromised, and how would you verify them?',
+            answer: 'Indicators can include unusual login attempts, abnormal outbound traffic, unexpected processes, disabled security controls, suspicious scheduled tasks, or unexpected account creation. I would confirm the issue by reviewing logs, checking for process execution on endpoints, validating file integrity, and comparing the behavior against the baseline for that system. I would also look for signs of malware persistence, lateral movement, or privilege escalation before concluding the incident.'
+          },
+          {
+            type: 'technical',
+            question: 'What is the difference between authentication and authorization, and why are both important?',
+            answer: 'Authentication is the process of proving who a user is, such as through a password, MFA, or certificate. Authorization determines what the user is allowed to do after they are authenticated, such as access to certain files, systems, or administrative functions. Both matter because a system can have valid authentication but still be vulnerable if authorization is too broad or poorly configured.'
+          },
+          {
+            type: 'technical',
+            question: 'How would you respond to a phishing email reported by an employee?',
+            answer: 'I would isolate the affected system if needed, confirm whether the employee clicked the link or opened an attachment, and review whether any credentials or data were exposed. I would then block the malicious sender, report the campaign internally, and check for similar messages across the organization. If credentials were entered, I would reset the password, enforce MFA, and investigate whether the account was used to access company systems or data.'
+          },
+          {
+            type: 'technical',
+            question: 'What is least privilege, and why is it important for security?',
+            answer: 'Least privilege means users and systems only have the minimum access they need to perform their job. It is important because excessive access increases the impact of a compromised account or a malicious insider. By limiting administrative rights and access to specific resources, the business reduces risk and makes security incidents easier to contain.'
           },
           {
             type: 'behavioral',
-            question: 'How do you handle learning new security tools or concepts quickly?',
-            answer: 'A strong answer would show self-driven learning. For example: “I break the tool or concept into smaller parts, start with the basics, practice in a lab or learning environment, and then apply what I learn to a real scenario. I also like to compare documentation with hands-on examples so I understand both the purpose and the practical use.”'
+            question: 'Describe a time when you had to stay calm and think clearly during a high-pressure situation. How did you handle it?',
+            answer: 'A strong answer would show composure, process, and communication. For example: “When I saw a suspicious alert, I paused, verified the evidence, and avoided reacting based on emotion alone. I followed a step-by-step approach: confirm the alert, review the logs, identify whether there was actual risk, and then escalate appropriately. That kept the team focused and allowed us to respond quickly without creating unnecessary disruption.”'
+          },
+          {
+            type: 'technical',
+            question: 'How would you explain the difference between a vulnerability, a threat, and a risk to a nontechnical team?',
+            answer: 'A vulnerability is a weakness in a system, such as an unpatched application. A threat is the actor or event that could exploit that weakness, such as malware or a hacker. A risk is the potential impact if the threat exploits the vulnerability, including operational disruption, data loss, or financial harm. I would communicate those differences to help the team prioritize which issues to fix first and how urgently.'
+          },
+          {
+            type: 'technical',
+            question: 'If a system is not logging enough information for investigation, what challenges does that create, and how would you improve it?',
+            answer: 'Without sufficient logging, it becomes difficult to reconstruct attacks, identify the source of malicious activity, or confirm whether a system was compromised. I would improve logging by enabling the critical event types, ensuring time synchronization, retaining logs for an appropriate period, and protecting them from tampering. This improves visibility and makes incident response more reliable.'
           }
         ],
         'software-developer': [
           {
-            type: 'behavioral',
-            question: 'Tell me about a time you had to debug a problem or fix a mistake in your work.',
-            answer: 'A strong answer would explain the root cause and the steps used to fix it. For example: “I ran into an issue where a feature was not working as expected because of a logic error. I reproduced the bug, reviewed the code path, isolated the failing condition, and corrected the logic. After testing it again, I confirmed the issue was resolved and made a note to avoid similar mistakes in the future.”'
+            type: 'technical',
+            question: 'What is the difference between a list and a dictionary or map in Python, and when would you choose one over the other?',
+            answer: 'A list is an ordered collection of values, accessed by position, while a dictionary stores key-value pairs and is accessed by key. I would choose a list for ordered data such as a sequence of scores or items, and a dictionary when I need fast lookup by a meaningful identifier such as a user ID or product code. That distinction matters because it affects readability, performance, and how the data is structured for logic in an application.'
           },
           {
             type: 'technical',
-            question: 'What is the difference between a bug and a feature request?',
-            answer: 'A strong answer would clarify that a bug is something that breaks expected behavior or causes incorrect results, while a feature request is a new capability or improvement requested by users or stakeholders. A strong developer evaluates both by understanding user impact, technical feasibility, and business value.'
+            question: 'How do you debug a failing application when the error message is unclear?',
+            answer: 'I would first reproduce the issue consistently and identify where the failure occurs. Then I would isolate the relevant code path, check recent changes, review logs, and use breakpoints or print statements to inspect variable values. I would reduce the problem to the smallest failing scenario, test hypotheses one by one, and only then implement the root-cause fix and verify the result.'
+          },
+          {
+            type: 'technical',
+            question: 'What is the purpose of version control, and why is Git important in a team environment?',
+            answer: 'Version control tracks code changes over time, making it easier to collaborate, roll back mistakes, and review who changed what. Git is important because it supports branching, merge workflows, code review, and backups of the project history. In a team environment, it reduces conflict and helps developers work on features independently while preserving a reliable main codebase.'
+          },
+          {
+            type: 'technical',
+            question: 'When would you choose a loop over a function, and how do they work differently in code?',
+            answer: 'A loop repeats a block of code multiple times, while a function encapsulates reusable logic that can be called when needed. I would select a loop when I need to process a collection or perform repeated actions, and a function when I want to reuse logic in different parts of the application. Both are important, but functions improve readability and maintainability, while loops handle repetition.'
+          },
+          {
+            type: 'technical',
+            question: 'What is the difference between front-end and back-end development, and how do they work together?',
+            answer: 'Front-end development focuses on what users see and interact with in the browser, such as layout, styling, and user inputs. Back-end development focuses on server logic, databases, and application processing that support the experience. They work together through APIs and data exchange, where the front end sends requests and the back end processes them and returns the necessary information.'
+          },
+          {
+            type: 'technical',
+            question: 'How would you explain an API to someone who does not know software development?',
+            answer: 'An API is a way for one system to request information or actions from another system in a structured, reliable format. It works like a restaurant waiter: the front-end asks for a service or data, and the back end delivers it without exposing internal complexity. In business terms, APIs help different software systems connect efficiently and share information across tools and platforms.'
+          },
+          {
+            type: 'technical',
+            question: 'What is the value of testing code, and why is it important before deploying an application?',
+            answer: 'Testing helps catch defects early, reduces risk, and ensures that changes do not break existing behavior. Without testing, teams may release unstable features that harm user experience or create business problems. I would use a mix of unit tests, integration checks, and manual validation depending on the feature, so the code is validated in the way the end user will actually use it.'
           },
           {
             type: 'behavioral',
-            question: 'How do you approach learning a new programming language or framework?',
-            answer: 'A strong answer would show both strategy and curiosity. For example: “I start by learning the fundamentals, then build a small project to apply the concepts in context. I look for practical examples, practice consistently, and compare what I learn to tools I already know so I can understand how it fits into the larger system.”'
+            question: 'Tell me about a project where you had to troubleshoot a problem in code. How did you isolate the cause and fix it?',
+            answer: 'A strong answer would show systematic debugging. For example: “I encountered a bug where a form was submitting the wrong data. I reproduced the issue, traced the data flow, and tested each step until I found the mismatch between the front-end value and the back-end payload. Once I identified the root cause, I corrected the logic, retested it, and added a validation check to prevent the same issue from happening again.”'
+          },
+          {
+            type: 'technical',
+            question: 'How would you improve performance in a slow web application?',
+            answer: 'I would start by identifying the bottleneck, such as slow database queries, large assets, inefficient loops, or excessive network requests. Then I would optimize the root cause by caching results, reducing payload size, using efficient queries, or deferring nonessential work. I would measure the impact with timing checks before and after the change to confirm that the improvement is real and not just a guess.'
+          },
+          {
+            type: 'technical',
+            question: 'Why is code readability important, and how do you make code easier for teammates to maintain?',
+            answer: 'Readable code reduces errors, makes collaboration easier, and helps others understand the logic faster. I make code easier to maintain by using clear variable names, keeping functions focused, adding comments only where needed, and following consistent naming and formatting patterns. This matters because the software is usually maintained by more than one person over time.'
           }
         ],
         'ux-designer': [
           {
-            type: 'behavioral',
-            question: 'Tell me about a time you had to improve something based on feedback from another person.',
-            answer: 'A strong answer would show empathy and iteration. For example: “I once received feedback that a process felt confusing to users. I listened carefully, identified the practical pain points, simplified the steps, and tested a revised version to see whether it was easier to follow. The final change improved clarity and made the experience much easier for people to understand.”'
+            type: 'technical',
+            question: 'What is the difference between usability and accessibility, and why are both important in design?',
+            answer: 'Usability is about how easy and effective a product is to use, while accessibility ensures that people with disabilities can also use it. Both matter because a product can be usable for some users but still exclude others if accessibility is ignored. I would design for clarity, consistent patterns, keyboard navigation, readable contrast, and alternative text so the experience is inclusive and efficient for a wide range of users.'
           },
           {
             type: 'technical',
-            question: 'How would you test whether a design is meeting user needs?',
-            answer: 'A strong answer would describe a process that includes user research, observation, and feedback. For example: “I would create a prototype, identify the task I want to test, and ask users to complete it while observing where they struggle. Then I would collect their feedback, compare the results to the original goals, and adjust the design based on the friction points I observed.”'
+            question: 'How would you conduct a usability test for a checkout flow on a website?',
+            answer: 'I would define the task and the success criteria first, such as completing a purchase without confusion or unnecessary steps. Then I would recruit users who match the target audience, ask them to complete the checkout flow while thinking aloud, and observe where they hesitate, get stuck, or misunderstand the steps. I would record the feedback, identify the friction points, and convert that into design changes that simplify the flow and reduce drop-off.'
+          },
+          {
+            type: 'technical',
+            question: 'What is a wireframe, and how is it different from a high-fidelity prototype?',
+            answer: 'A wireframe is a low-detail layout that focuses on structure and hierarchy, such as where content and actions will appear. A high-fidelity prototype is more realistic and closer to the final product, with visual design, interactions, and branding. Wireframes help clarify structure early, while prototypes are useful for testing how users experience the interface before development begins.'
+          },
+          {
+            type: 'technical',
+            question: 'How do you decide whether a design problem is caused by navigation, content, or task flow?',
+            answer: 'I would look at where users struggle and what pattern repeats across sessions. If users cannot find the correct path, the issue may be navigation or information architecture. If they understand the layout but do not understand the content, the issue may be clarity or messaging. If they can navigate but still fail to complete the task, the issue is likely in the workflow or interaction design. I would test those assumptions and validate them with evidence before changing the design.'
+          },
+          {
+            type: 'technical',
+            question: 'What is user research, and why is it important before finalizing a design?',
+            answer: 'User research is the process of learning how real users think, behave, and need the product to work. It is important because it reduces the risk of building something that looks good to designers but does not solve the user problem. Research can include interviews, observations, surveys, and testing, and it helps the team create a product that is informed by actual behavior rather than assumptions.'
+          },
+          {
+            type: 'technical',
+            question: 'How would you improve a process that users say is confusing or frustrating?',
+            answer: 'I would first identify the source of confusion by observing the task and gathering user feedback. I would look for friction points such as unclear labels, too many steps, inconsistent actions, or poor visual hierarchy. Then I would simplify the flow, reduce unnecessary decisions, clarify the language, and test the revised version with users to verify that the experience improves and not just the appearance.'
+          },
+          {
+            type: 'technical',
+            question: 'Why does design consistency matter in a digital product?',
+            answer: 'Consistency matters because users learn patterns and rely on them to navigate quickly and confidently. If the design is inconsistent, users may become confused about what actions are available or how the system works. A consistent design reduces cognitive load, improves usability, and makes the product feel more trustworthy and professional.'
           },
           {
             type: 'behavioral',
-            question: 'Describe a project where you had to balance user needs with business constraints.',
-            answer: 'A strong answer would show practical decision-making. For example: “I worked on a design idea that met the user goal but was too expensive to build within the current timeline. I used the user feedback to simplify the feature, keep the most important elements, and propose a phased approach so the product still delivered value without overspending.”'
+            question: 'Tell me about a time you received criticism on a design idea. How did you respond and improve it?',
+            answer: 'A strong answer would show openness to feedback and iteration. For example: “I created a prototype based on my initial interpretation, and a stakeholder pointed out that the layout did not match how users actually think through the task. Instead of defending the design, I listened to the feedback, looked at the friction points, and revised the interface based on the user flow. The updated version was clearer because it responded to real behavior rather than assumptions.”'
+          },
+          {
+            type: 'technical',
+            question: 'How would you use personas or user stories in a design process?',
+            answer: 'I would use personas to understand different user types, motivations, needs, and constraints, while user stories help define the task from the perspective of a person using the system. These tools keep the design focused on actual user goals and help product teams prioritize features that matter most. They also make it easier to test whether the product supports real scenarios instead of only general assumptions.'
+          },
+          {
+            type: 'technical',
+            question: 'What makes a design effective from a business standpoint as well as a user standpoint?',
+            answer: 'An effective design solves a real user problem while also supporting business goals such as conversion, retention, efficiency, or trust. It balances usability with clarity, speed, and strategic priorities. A strong designer looks at both sides: how the product works for the user and how it supports the company’s objectives without adding unnecessary friction or complexity.'
           }
         ]
       };
@@ -1084,6 +1261,13 @@
         });
       }
 
+      function showPage(pageId) {
+        const pages = document.querySelectorAll('.page');
+        pages.forEach((page) => {
+          page.classList.toggle('active', page.id === pageId);
+        });
+      }
+
       /*
         Event listeners for the homepage button navigation.
         These buttons scroll the user to the relevant section.
@@ -1099,7 +1283,16 @@
         });
       });
 
+      document.querySelectorAll('[data-page-nav]').forEach((button) => {
+        button.addEventListener('click', () => {
+          const pageId = button.dataset.pageNav;
+          showPage(pageId);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      });
+
       // Initialize the app when the page loads.
+      showPage('home-page');
       renderRoleTabs();
       renderQuiz();
       renderRoleSelector();
