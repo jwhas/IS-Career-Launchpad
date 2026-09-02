@@ -485,6 +485,224 @@
         color: var(--primary-dark);
       }
 
+      .behavioral-shell {
+        padding: 48px 0 60px;
+        max-width: 920px;
+      }
+
+      .behavioral-header {
+        margin-bottom: 24px;
+      }
+
+      .behavioral-header h1 {
+        color: var(--primary-dark);
+        font-size: clamp(2rem, 4vw, 3.1rem);
+        line-height: 1.15;
+        margin-bottom: 12px;
+      }
+
+      .behavioral-header p {
+        color: var(--muted);
+        font-size: 1.05rem;
+        max-width: 700px;
+        margin-bottom: 0;
+      }
+
+      .behavioral-card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: clamp(20px, 4vw, 32px);
+        box-shadow: var(--shadow);
+      }
+
+      .star-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+        margin: 24px 0;
+      }
+
+      .star-card {
+        background: #f8fbff;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 16px;
+      }
+
+      .star-card h3 {
+        color: var(--primary-dark);
+        font-size: 1rem;
+        margin-bottom: 7px;
+      }
+
+      .star-letter {
+        display: inline-grid;
+        place-items: center;
+        width: 32px;
+        height: 32px;
+        margin-bottom: 12px;
+        border-radius: 9px;
+        background: var(--primary);
+        color: white;
+        font-weight: 700;
+      }
+
+      .star-card p,
+      .behavioral-note {
+        color: var(--muted);
+        margin-bottom: 0;
+      }
+
+      .practice-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 10px;
+        color: var(--muted);
+        font-weight: 700;
+        font-size: 0.92rem;
+      }
+
+      .progress-track {
+        height: 9px;
+        overflow: hidden;
+        border-radius: 999px;
+        background: #e5ebf6;
+        margin-bottom: 28px;
+      }
+
+      .progress-fill {
+        width: 10%;
+        height: 100%;
+        border-radius: inherit;
+        background: var(--primary);
+        transition: width 0.25s ease;
+      }
+
+      .practice-question {
+        color: var(--primary-dark);
+        font-size: clamp(1.35rem, 3vw, 1.8rem);
+        line-height: 1.35;
+        margin-bottom: 24px;
+      }
+
+      .answer-label {
+        display: block;
+        color: var(--primary-dark);
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+
+      .behavioral-answer {
+        width: 100%;
+        min-height: 210px;
+        padding: 15px 16px;
+        border: 1px solid #cfd9ea;
+        border-radius: 12px;
+        color: var(--text);
+        font: inherit;
+        line-height: 1.55;
+        resize: vertical;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .behavioral-answer:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(22, 61, 143, 0.12);
+      }
+
+      .feedback-panel {
+        margin-top: 26px;
+        padding-top: 24px;
+        border-top: 1px solid var(--line);
+      }
+
+      .feedback-panel h3,
+      .guidance-box h3,
+      .completion-card h2 {
+        color: var(--primary-dark);
+      }
+
+      .feedback-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        margin: 16px 0;
+      }
+
+      .feedback-item {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 13px;
+        background: #f8fbff;
+      }
+
+      .feedback-item strong {
+        display: block;
+        color: var(--primary-dark);
+        margin-bottom: 4px;
+      }
+
+      .feedback-status {
+        color: #9a5b00;
+        font-size: 0.9rem;
+        font-weight: 700;
+      }
+
+      .feedback-item.included {
+        background: #f0fdfa;
+        border-color: #bfe7df;
+      }
+
+      .feedback-item.included .feedback-status {
+        color: var(--success);
+      }
+
+      .overall-feedback {
+        margin: 0;
+        padding: 14px 16px;
+        border-left: 4px solid var(--primary);
+        border-radius: 8px;
+        background: var(--panel-alt);
+        color: var(--text);
+      }
+
+      .guidance-box {
+        margin-top: 20px;
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: #f8fbff;
+      }
+
+      .guidance-box h3 {
+        font-size: 1.05rem;
+        margin-bottom: 10px;
+      }
+
+      .guidance-box ul {
+        margin: 0;
+        padding-left: 20px;
+        color: var(--muted);
+      }
+
+      .completion-card {
+        text-align: center;
+        padding: clamp(30px, 6vw, 52px);
+      }
+
+      .completion-card p {
+        color: var(--muted);
+        margin-bottom: 0;
+      }
+
+      .completion-card .cta-row {
+        justify-content: center;
+      }
+
       .footer {
         padding: 32px 0 60px;
         color: var(--muted);
@@ -505,6 +723,22 @@
           flex-direction: column;
           align-items: flex-start;
           padding: 14px 0;
+        }
+
+        .star-grid,
+        .feedback-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 520px) {
+        .star-grid,
+        .feedback-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .behavioral-shell {
+          padding-top: 32px;
         }
       }
     </style>
@@ -630,17 +864,87 @@
       </section>
 
       <section id="behavioral-page" class="page">
-        <div class="container" style="padding: 40px 0 60px;">
-          <h2>Behavioral Interview Practice</h2>
-          <div class="info-card">
-            <h3>Coming next</h3>
-            <p>
-              This page is dedicated to behavioral interview practice and will be built separately by your coworker.
-              The technical interview practice lives on its own page.
-            </p>
-            <div class="cta-row" style="margin-top: 18px;">
-              <button class="btn btn-secondary" data-page-nav="home-page">Back to Home</button>
-              <button class="btn btn-primary" data-page-nav="technical-page">Technical Interview Practice</button>
+        <div class="container behavioral-shell">
+          <div id="behavioralIntro">
+            <div class="behavioral-header">
+              <span class="eyebrow">Interview Preparation</span>
+              <h1>Behavioral Interview Practice</h1>
+              <p>Use the STAR method to structure clear and specific answers to behavioral interview questions.</p>
+            </div>
+
+            <div class="behavioral-card">
+              <h2>The STAR method</h2>
+              <div class="star-grid">
+                <div class="star-card">
+                  <span class="star-letter">S</span>
+                  <h3>Situation</h3>
+                  <p>Briefly describe the context or background.</p>
+                </div>
+                <div class="star-card">
+                  <span class="star-letter">T</span>
+                  <h3>Task</h3>
+                  <p>Explain your responsibility or what needed to be accomplished.</p>
+                </div>
+                <div class="star-card">
+                  <span class="star-letter">A</span>
+                  <h3>Action</h3>
+                  <p>Describe the specific actions YOU took.</p>
+                </div>
+                <div class="star-card">
+                  <span class="star-letter">R</span>
+                  <h3>Result</h3>
+                  <p>Explain the outcome and what you learned.</p>
+                </div>
+              </div>
+              <button id="startBehavioralPractice" class="btn btn-primary" type="button">Start Practice</button>
+            </div>
+          </div>
+
+          <div id="behavioralPractice" class="hidden">
+            <div class="behavioral-header">
+              <span class="eyebrow">STAR Practice</span>
+              <h1>Behavioral Interview Practice</h1>
+            </div>
+            <div class="behavioral-card">
+              <div class="practice-meta">
+                <span id="behavioralProgressText">Question 1 of 10</span>
+                <span>Use STAR</span>
+              </div>
+              <div class="progress-track" role="progressbar" aria-label="Practice progress" aria-valuemin="1" aria-valuemax="10" aria-valuenow="1">
+                <div id="behavioralProgressFill" class="progress-fill"></div>
+              </div>
+              <h2 id="behavioralQuestion" class="practice-question"></h2>
+              <label class="answer-label" for="behavioralAnswer">Your Answer</label>
+              <textarea id="behavioralAnswer" class="behavioral-answer" placeholder="Try answering using Situation, Task, Action, and Result…"></textarea>
+              <div class="cta-row">
+                <button id="checkBehavioralAnswer" class="btn btn-primary" type="button">Check My Answer</button>
+              </div>
+
+              <div id="behavioralFeedback" class="feedback-panel hidden" aria-live="polite">
+                <h3>Your STAR feedback</h3>
+                <p class="behavioral-note">This is a quick text-based check, so use the feedback as a guide rather than a perfect evaluation.</p>
+                <div id="starFeedbackGrid" class="feedback-grid"></div>
+                <p id="overallBehavioralFeedback" class="overall-feedback"></p>
+                <div class="guidance-box">
+                  <h3>What a strong answer should include</h3>
+                  <ul id="behavioralGuidance"></ul>
+                </div>
+                <div class="cta-row">
+                  <button id="nextBehavioralQuestion" class="btn btn-primary" type="button">Next Question</button>
+                  <button id="tryBehavioralAgain" class="btn btn-secondary" type="button">Try Again</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="behavioralComplete" class="hidden">
+            <div class="behavioral-card completion-card">
+              <h2>Practice Complete</h2>
+              <p>You practiced 10 common behavioral interview questions using the STAR method.</p>
+              <div class="cta-row">
+                <button id="practiceBehavioralAgain" class="btn btn-primary" type="button">Practice Again</button>
+                <button class="btn btn-secondary" type="button" data-page-nav="home-page">Back to Home</button>
+              </div>
             </div>
           </div>
         </div>
@@ -1257,6 +1561,162 @@
         });
       }
 
+      const behavioralQuestionBank = [
+        {
+          question: 'Tell me about a time you had a conflict with a teammate.',
+          guidance: ['Briefly explain what caused the disagreement.', 'Clearly describe your role in resolving it.', 'Focus on what you did rather than what the team did.', 'End with the outcome and what you learned.']
+        },
+        {
+          question: 'Tell me about a time you made a mistake or failed.',
+          guidance: ['Give enough context to make the mistake understandable.', 'Take ownership of your responsibility.', 'Explain the steps you took to correct the issue.', 'Share what changed or what you learned afterward.']
+        },
+        {
+          question: 'Tell me about a time you demonstrated leadership.',
+          guidance: ['Describe the situation that needed leadership.', 'Clarify the goal and why you stepped up.', 'Show how you guided, organized, or supported others.', 'Connect your actions to a specific team outcome.']
+        },
+        {
+          question: 'Tell me about a time you worked under pressure.',
+          guidance: ['Explain what made the situation high pressure.', 'Identify the deadline or responsibility you faced.', 'Describe how you stayed organized and made decisions.', 'State the outcome and what the experience taught you.']
+        },
+        {
+          question: 'Tell me about a time you had to adapt to a major change.',
+          guidance: ['Describe the change and how it affected your work.', 'Explain what you were responsible for during the transition.', 'Show the specific adjustments you made.', 'Share the result and what you learned about adaptability.']
+        },
+        {
+          question: 'Tell me about a time you solved a difficult problem.',
+          guidance: ['Define the problem and why it was challenging.', 'Clarify your responsibility in solving it.', 'Walk through the actions and reasoning you used.', 'Include a measurable result when possible.']
+        },
+        {
+          question: 'Tell me about a time you had to persuade someone.',
+          guidance: ['Explain the differing viewpoints or initial resistance.', 'State what you needed to accomplish.', 'Describe how you tailored your evidence or communication.', 'Share the decision, outcome, or lesson learned.']
+        },
+        {
+          question: 'Tell me about a time you received critical feedback.',
+          guidance: ['Provide context for the feedback without becoming defensive.', 'Explain your responsibility for responding to it.', 'Describe the changes you made based on the feedback.', 'Show how your performance or approach improved.']
+        },
+        {
+          question: 'Tell me about a time you had to prioritize multiple responsibilities.',
+          guidance: ['Describe the competing tasks and constraints.', 'Explain how you determined what mattered most.', 'Show the system or communication you used to stay on track.', 'Share whether you met the deadlines and what you learned.']
+        },
+        {
+          question: 'Tell me about a time you worked with someone whose working style was very different from yours.',
+          guidance: ['Describe the difference in working styles neutrally.', 'Clarify the shared goal or responsibility.', 'Explain how you adjusted your communication or process.', 'End with the outcome for the relationship and the work.']
+        }
+      ];
+
+      let behavioralQuestions = [];
+      let behavioralQuestionIndex = 0;
+
+      function shuffleBehavioralQuestions() {
+        behavioralQuestions = behavioralQuestionBank.map((item) => ({ ...item }));
+        for (let index = behavioralQuestions.length - 1; index > 0; index -= 1) {
+          const randomIndex = Math.floor(Math.random() * (index + 1));
+          [behavioralQuestions[index], behavioralQuestions[randomIndex]] = [behavioralQuestions[randomIndex], behavioralQuestions[index]];
+        }
+      }
+
+      function startBehavioralSession() {
+        shuffleBehavioralQuestions();
+        behavioralQuestionIndex = 0;
+        document.getElementById('behavioralIntro').classList.add('hidden');
+        document.getElementById('behavioralComplete').classList.add('hidden');
+        document.getElementById('behavioralPractice').classList.remove('hidden');
+        renderBehavioralQuestion();
+      }
+
+      function renderBehavioralQuestion() {
+        const currentNumber = behavioralQuestionIndex + 1;
+        const progressPercent = (currentNumber / behavioralQuestions.length) * 100;
+        const progressTrack = document.querySelector('.progress-track');
+
+        document.getElementById('behavioralProgressText').textContent = `Question ${currentNumber} of ${behavioralQuestions.length}`;
+        document.getElementById('behavioralProgressFill').style.width = `${progressPercent}%`;
+        progressTrack.setAttribute('aria-valuenow', currentNumber);
+        document.getElementById('behavioralQuestion').textContent = behavioralQuestions[behavioralQuestionIndex].question;
+        document.getElementById('behavioralAnswer').value = '';
+        document.getElementById('behavioralFeedback').classList.add('hidden');
+        document.getElementById('checkBehavioralAnswer').classList.remove('hidden');
+        document.getElementById('nextBehavioralQuestion').textContent = currentNumber === behavioralQuestions.length ? 'Finish Practice' : 'Next Question';
+        document.getElementById('behavioralAnswer').focus();
+      }
+
+      function includesAny(text, phrases) {
+        return phrases.some((phrase) => text.includes(phrase));
+      }
+
+      function analyzeBehavioralAnswer(answer) {
+        const text = answer.toLowerCase().replace(/[’]/g, "'");
+        const wordCount = text.trim().split(/\s+/).filter(Boolean).length;
+        const checks = {
+          Situation: wordCount >= 35 && includesAny(text, ['when i', 'at the time', 'during', 'while', 'in my', 'on a project', 'our team', 'the situation', 'the problem', 'the challenge']),
+          Task: wordCount >= 45 && includesAny(text, ['my responsibility', 'i was responsible', 'i needed to', 'i had to', 'my goal', 'the goal', 'my task', 'i was asked', 'i was assigned']),
+          Action: wordCount >= 55 && includesAny(text, ['i decided', 'i created', 'i spoke', 'i organized', 'i developed', 'i analyzed', 'i met', 'i asked', 'i proposed', 'i implemented', 'i worked', 'i communicated', 'i prioritized', 'i took', 'i started', 'i changed']),
+          Result: wordCount >= 65 && includesAny(text, ['as a result', 'the result', 'because of this', 'increased', 'improved', 'completed', 'reduced', 'achieved', 'learned', 'ultimately', 'successfully', 'outcome', 'led to'])
+        };
+
+        if (wordCount >= 110) {
+          checks.Situation = checks.Situation || includesAny(text, ['first', 'initially', 'background']);
+          checks.Task = checks.Task || includesAny(text, ['objective', 'deadline', 'expected']);
+          checks.Action = checks.Action || (text.match(/\bi\s+[a-z]+/g) || []).length >= 5;
+          checks.Result = checks.Result || includesAny(text, ['finished', 'delivered', 'feedback', 'percent', '%']);
+        }
+
+        return checks;
+      }
+
+      function checkBehavioralAnswer() {
+        const answer = document.getElementById('behavioralAnswer').value.trim();
+        const feedbackPanel = document.getElementById('behavioralFeedback');
+        const feedbackGrid = document.getElementById('starFeedbackGrid');
+        const overallFeedback = document.getElementById('overallBehavioralFeedback');
+        const guidanceList = document.getElementById('behavioralGuidance');
+
+        const checks = analyzeBehavioralAnswer(answer);
+        const included = Object.entries(checks).filter(([, isIncluded]) => isIncluded).map(([name]) => name);
+        const missing = Object.entries(checks).filter(([, isIncluded]) => !isIncluded).map(([name]) => name);
+
+        feedbackGrid.innerHTML = Object.entries(checks).map(([name, isIncluded]) => `
+          <div class="feedback-item ${isIncluded ? 'included' : ''}">
+            <strong>${name}</strong>
+            <span class="feedback-status">${isIncluded ? 'Included' : 'Needs more detail'}</span>
+          </div>
+        `).join('');
+
+        if (!answer) {
+          overallFeedback.textContent = 'Start by writing an answer, then use the feedback to strengthen each part of your STAR story.';
+        } else if (included.length === 4) {
+          overallFeedback.textContent = 'Strong STAR structure. Your answer includes context, your responsibility, specific actions, and a clear result.';
+        } else if (included.length >= 2) {
+          overallFeedback.textContent = `Good start. Your ${included.join(' and ').toLowerCase()} ${included.length === 1 ? 'is' : 'are'} clear, but add more detail about ${missing.join(' and ').toLowerCase()}.`;
+        } else {
+          overallFeedback.textContent = `Your response has a starting point, but it needs a clearer STAR structure. Focus next on ${missing.slice(0, 2).join(' and ').toLowerCase()}.`;
+        }
+
+        guidanceList.innerHTML = behavioralQuestions[behavioralQuestionIndex].guidance.map((item) => `<li>${item}</li>`).join('');
+        feedbackPanel.classList.remove('hidden');
+        document.getElementById('checkBehavioralAnswer').classList.add('hidden');
+        feedbackPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
+      function tryBehavioralAnswerAgain() {
+        document.getElementById('behavioralFeedback').classList.add('hidden');
+        document.getElementById('checkBehavioralAnswer').classList.remove('hidden');
+        document.getElementById('behavioralAnswer').focus();
+      }
+
+      function advanceBehavioralPractice() {
+        if (behavioralQuestionIndex === behavioralQuestions.length - 1) {
+          document.getElementById('behavioralPractice').classList.add('hidden');
+          document.getElementById('behavioralComplete').classList.remove('hidden');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          return;
+        }
+
+        behavioralQuestionIndex += 1;
+        renderBehavioralQuestion();
+        document.getElementById('behavioralPractice').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
       function showPage(pageId) {
         const pages = document.querySelectorAll('.page');
         pages.forEach((page) => {
@@ -1306,6 +1766,11 @@
       renderRoleSelector();
       renderInterviewQuestions();
       document.getElementById('submitQuiz').addEventListener('click', calculateQuizResults);
+      document.getElementById('startBehavioralPractice').addEventListener('click', startBehavioralSession);
+      document.getElementById('practiceBehavioralAgain').addEventListener('click', startBehavioralSession);
+      document.getElementById('checkBehavioralAnswer').addEventListener('click', checkBehavioralAnswer);
+      document.getElementById('tryBehavioralAgain').addEventListener('click', tryBehavioralAnswerAgain);
+      document.getElementById('nextBehavioralQuestion').addEventListener('click', advanceBehavioralPractice);
     </script>
   </body>
 </html>
