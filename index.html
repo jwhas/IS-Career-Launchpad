@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IS Career Launchpad</title>
+    <style>
+      :root {
+        --bg: #f4f7fb;
+        --panel: #ffffff;
+        --panel-alt: #eef3ff;
+        --primary: #163d8f;
+        --primary-dark: #0f2d69;
+        --secondary: #1fa2a6;
+        --accent: #f59e0b;
+        --text: #1e293b;
+        --muted: #52607a;
+        --line: #dfe7f5;
+        --success: #0f766e;
+        --shadow: 0 12px 28px rgba(15, 45, 105, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img,
+      iframe {
+        max-width: 100%;
+        display: block;
+      }
+
+      .container {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: rgba(255, 255, 255, 0.94);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .topbar-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 72px;
+        gap: 20px;
+      }
+
+      .brand {
+        font-weight: 700;
+        font-size: 1.15rem;
+        color: var(--primary-dark);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .nav a {
+        color: var(--muted);
+        padding: 8px 10px;
+        border-radius: 8px;
+        transition: 0.2s ease;
+      }
+
+      .nav a:hover {
+        background: var(--panel-alt);
+        color: var(--primary);
+      }
+
+      .hero {
+        padding: 56px 0 32px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 30px;
+        align-items: center;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        background: var(--panel-alt);
+        color: var(--primary);
+        border: 1px solid #dfe9ff;
+        padding: 8px 12px;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      p {
+        margin-top: 0;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.2rem, 4vw, 4rem);
+        line-height: 1.1;
+        margin: 18px 0 16px;
+        color: var(--primary-dark);
+      }
+
+      .hero p {
+        font-size: 1.05rem;
+        color: var(--muted);
+        max-width: 640px;
+      }
+
+      .cta-row {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-top: 24px;
+      }
+
+      .btn {
+        border: none;
+        border-radius: 12px;
+        padding: 14px 18px;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: white;
+        box-shadow: var(--shadow);
+      }
+
+      .btn-secondary {
+        background: #e9f3ff;
+        color: var(--primary);
+        border: 1px solid #d4e3ff;
+      }
+
+      .video-card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 14px;
+        box-shadow: var(--shadow);
+      }
+
+      .video-card iframe {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border: none;
+        border-radius: 14px;
+      }
+
+      .section {
+        padding: 28px 0 10px;
+      }
+
+      .section h2 {
+        font-size: clamp(1.7rem, 2.5vw, 2.5rem);
+        color: var(--primary-dark);
+        margin-bottom: 16px;
+      }
+
+      .intro-grid,
+      .option-grid,
+      .stat-grid {
+        display: grid;
+        gap: 18px;
+      }
+
+      .intro-grid {
+        grid-template-columns: repeat(4, minmax(180px, 1fr));
+      }
+
+      .info-card,
+      .option-card,
+      .role-card,
+      .question-card,
+      .result-card,
+      .mini-card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 18px;
+        box-shadow: 0 8px 18px rgba(15, 45, 105, 0.04);
+      }
+
+      .info-card h3,
+      .option-card h3,
+      .mini-card h3 {
+        margin-bottom: 8px;
+        color: var(--primary-dark);
+      }
+
+      .info-card p,
+      .option-card p,
+      .mini-card p {
+        color: var(--muted);
+        margin-bottom: 0;
+      }
+
+      .choice-panel {
+        margin-top: 22px;
+      }
+
+      .option-grid {
+        grid-template-columns: repeat(2, minmax(240px, 1fr));
+      }
+
+      .option-card {
+        text-align: left;
+        cursor: pointer;
+        transition: border-color 0.2s ease, transform 0.2s ease;
+      }
+
+      .option-card:hover {
+        border-color: #bfd2ff;
+        transform: translateY(-1px);
+      }
+
+      .option-card strong {
+        display: inline-block;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: #ecf4ff;
+        color: var(--primary);
+        font-size: 0.78rem;
+        margin-bottom: 10px;
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      .panel {
+        margin-top: 26px;
+      }
+
+      .quiz-box {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 22px;
+      }
+
+      .question-block {
+        margin-bottom: 24px;
+        padding-bottom: 18px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .question-block:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+
+      .question-block h3 {
+        color: var(--primary-dark);
+        margin-bottom: 14px;
+        font-size: 1.1rem;
+      }
+
+      .choice-list {
+        display: grid;
+        gap: 10px;
+      }
+
+      .choice-list label {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        background: #f8fbff;
+        border: 1px solid #e2ebff;
+        border-radius: 12px;
+        padding: 10px 12px;
+        color: var(--text);
+      }
+
+      .choice-list input {
+        margin-top: 3px;
+      }
+
+      .results-box {
+        margin-top: 18px;
+        background: #edfdfb;
+        border: 1px solid #cceae5;
+        border-radius: 16px;
+        padding: 18px;
+      }
+
+      .results-box h3 {
+        color: var(--success);
+      }
+
+      .result-grid {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(2, minmax(220px, 1fr));
+      }
+
+      .result-card h4 {
+        color: var(--primary-dark);
+        margin-bottom: 10px;
+      }
+
+      .result-card ul {
+        margin: 0;
+        padding-left: 20px;
+        color: var(--muted);
+      }
+
+      .role-tabs {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 18px;
+      }
+
+      .role-tab {
+        background: var(--panel);
+        color: var(--primary);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 10px 14px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .role-tab.active {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: white;
+      }
+
+      .role-layout {
+        display: grid;
+        grid-template-columns: 300px minmax(0, 1fr);
+        gap: 20px;
+      }
+
+      .role-card {
+        height: fit-content;
+      }
+
+      .role-card h3 {
+        margin-bottom: 10px;
+      }
+
+      .role-card p,
+      .role-card li {
+        color: var(--muted);
+      }
+
+      .role-card ul {
+        padding-left: 18px;
+      }
+
+      .detail-card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 22px;
+      }
+
+      .detail-card h3 {
+        color: var(--primary-dark);
+        margin-bottom: 14px;
+      }
+
+      .detail-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(200px, 1fr));
+        gap: 18px;
+      }
+
+      .mini-card h4 {
+        margin-bottom: 8px;
+        color: var(--primary-dark);
+      }
+
+      .mini-card ul {
+        margin: 0;
+        padding-left: 18px;
+        color: var(--muted);
+      }
+
+      .interview-controls {
+        margin-bottom: 18px;
+      }
+
+      .interview-controls select {
+        width: min(100%, 280px);
+        padding: 12px 14px;
+        border-radius: 12px;
+        border: 1px solid var(--line);
+        font-size: 1rem;
+        background: white;
+        color: var(--text);
+      }
+
+      .question-card {
+        margin-bottom: 18px;
+      }
+
+      .question-card h4 {
+        margin-bottom: 8px;
+        color: var(--primary-dark);
+      }
+
+      .question-card p {
+        margin-bottom: 10px;
+        color: var(--muted);
+      }
+
+      .question-card textarea {
+        width: 100%;
+        min-height: 120px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 12px 14px;
+        font: inherit;
+        resize: vertical;
+      }
+
+      .answer-box {
+        margin-top: 14px;
+        border-radius: 12px;
+        background: #f6f9ff;
+        border: 1px solid #dfe8ff;
+        padding: 14px;
+        color: var(--text);
+        display: none;
+      }
+
+      .answer-box.visible {
+        display: block;
+      }
+
+      .answer-box strong {
+        color: var(--primary-dark);
+      }
+
+      .footer {
+        padding: 32px 0 60px;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      @media (max-width: 820px) {
+        .hero-grid,
+        .role-layout,
+        .detail-grid,
+        .result-grid,
+        .intro-grid,
+        .option-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .topbar-inner {
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 14px 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <div class="brand">IS Career Launchpad</div>
+        <nav class="nav" aria-label="Main navigation">
+          <a href="#about">What is IS?</a>
+          <a href="#explore">Career Paths</a>
+          <a href="#quiz">Quiz</a>
+          <a href="#interview">Interview Prep</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <span class="eyebrow">Information Systems</span>
+            <h1>Build a career at the intersection of business, technology, and people.</h1>
+            <p>
+              Information Systems (IS) is the field where business problems meet digital tools.
+              IS professionals design systems, analyze data, secure information, and create experiences
+              that help organizations run smarter and serve people better.
+            </p>
+            <div class="cta-row">
+              <button class="btn btn-primary" data-target="quiz">Take the career fit quiz</button>
+              <button class="btn btn-secondary" data-target="explore">Explore career paths</button>
+            </div>
+          </div>
+
+          <div class="video-card">
+            <iframe
+              src="https://www.youtube.com/embed/tgbNymZ7vqY"
+              title="Introduction video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="section">
+        <div class="container">
+          <h2>What is Information Systems?</h2>
+          <p>
+            Information Systems is a broad career field focused on using technology to improve how
+            organizations operate. It includes everything from managing databases and analyzing trends,
+            to developing software, protecting company systems, and improving the digital experiences
+            people use every day.
+          </p>
+
+          <div class="intro-grid">
+            <div class="info-card">
+              <h3>Business + Tech</h3>
+              <p>IS professionals solve real business challenges using technology, processes, and strategy.</p>
+            </div>
+            <div class="info-card">
+              <h3>Problem Solving</h3>
+              <p>They connect data, tools, and user needs to improve operations and decision-making.</p>
+            </div>
+            <div class="info-card">
+              <h3>People + Systems</h3>
+              <p>IS work is about making systems easier for people to understand, use, and trust.</p>
+            </div>
+            <div class="info-card">
+              <h3>Career Variety</h3>
+              <p>There are paths in data, cybersecurity, software, design, and many other business-facing roles.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section choice-panel">
+        <div class="container">
+          <h2>Choose your next step</h2>
+          <div class="option-grid">
+            <button class="option-card" data-target="quiz">
+              <strong>Option 1</strong>
+              <h3>Career Fit Quiz</h3>
+              <p>Answer a few quick questions to discover which Information Systems roles may fit you best.</p>
+            </button>
+            <button class="option-card" data-target="explore">
+              <strong>Option 2</strong>
+              <h3>Explore the Careers</h3>
+              <p>Browse the main IS job paths, compare responsibilities, and learn what each role is like.</p>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section id="quiz" class="section panel hidden">
+        <div class="container">
+          <h2>Career Path Discovery Quiz</h2>
+          <p>
+            This quick test is designed to point you toward two good-fit roles within Information Systems.
+            Choose the answer that feels most natural to you.
+          </p>
+
+          <div class="quiz-box" id="quizContainer"></div>
+          <div class="cta-row">
+            <button id="submitQuiz" class="btn btn-primary">See my matches</button>
+          </div>
+          <div id="quizResults" class="results-box hidden"></div>
+        </div>
+      </section>
+
+      <section id="explore" class="section panel">
+        <div class="container">
+          <h2>Career Paths in Information Systems</h2>
+          <div id="roleTabs" class="role-tabs" aria-label="Career role tabs"></div>
+
+          <div class="role-layout">
+            <aside id="roleCard" class="role-card"></aside>
+            <div id="roleDetail" class="detail-card"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="interview" class="section">
+        <div class="container">
+          <h2>Interview Prep</h2>
+          <p>Practice realistic questions for entry-level IS roles. Type your answer and reveal a stronger sample response.</p>
+
+          <div class="interview-controls">
+            <label for="roleSelect">Choose a role</label><br />
+            <select id="roleSelect"></select>
+          </div>
+
+          <div id="interviewQuestions"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">IS Career Launchpad • Built as a client-side prototype for career exploration.</div>
+    </footer>
+
+    <script>
+      /*
+        This app uses hardcoded JavaScript arrays and objects to keep all content on the client side.
+        The page is built dynamically from these data structures instead of writing separate HTML for each role.
+        That makes the prototype easier to update, present, and explain.
+      */
+
+      // Core career data for the four Information Systems pathways.
+      // Each object contains realistic details for entry-level career exploration.
+      const careerPaths = [
+        {
+          id: 'data-analyst',
+          name: 'Data Analyst',
+          label: 'Data & Insight',
+          summary: 'Turns raw data into useful insights that help teams make better decisions.',
+          dayToDay: [
+            'Review business data and identify patterns, outliers, or performance issues.',
+            'Build dashboards and reports for managers, sales teams, or operations leaders.',
+            'Clean and organize data before analysis so reports are accurate and reliable.',
+            'Work with stakeholders to define the right metrics and explain the story behind the numbers.'
+          ],
+          skills: ['Excel', 'SQL', 'Power BI / Tableau', 'Data cleaning', 'Basic Python or R', 'Data storytelling'],
+          entryLevel: 'Entry-level analysts often need strong analytical skills, a portfolio of reports or dashboards, and comfort working with spreadsheets and business data. Internships, class projects, and analytics certifications help.',
+          salary: '$60,000 - $90,000',
+          traits: ['Detail-oriented', 'Curious', 'Good communicator', 'Comfortable with numbers and patterns'],
+          highlights: [
+            'Best for people who enjoy solving problems with data and communicating insights clearly.',
+            'Strong fit for business-minded learners who are comfortable with spreadsheets and reporting tools.'
+          ]
+        },
+        {
+          id: 'cybersecurity-analyst',
+          name: 'Cybersecurity Analyst',
+          label: 'Security & Risk',
+          summary: 'Protects systems, data, and users by monitoring threats, responding to issues, and improving defenses.',
+          dayToDay: [
+            'Monitor security alerts and investigate suspicious activity across systems and networks.',
+            'Review system logs, detect vulnerabilities, and help respond to security incidents.',
+            'Support identity, access, and device protection using security tools and policies.',
+            'Document concerns, communicate risks, and help teams strengthen protections.'
+          ],
+          skills: ['SIEM tools', 'Network basics', 'Linux / command line', 'Security monitoring', 'Risk awareness', 'Incident response'],
+          entryLevel: 'Entry-level roles usually expect basic networking knowledge, a willingness to learn security tools, and strong problem-solving. Certifications like Security+ can help, but hands-on practice matters.',
+          salary: '$65,000 - $110,000',
+          traits: ['Analytical', 'Calm under pressure', 'Detail-oriented', 'Interested in technology and risk'],
+          highlights: [
+            'Best for people who enjoy investigation, patterns, and protecting digital systems.',
+            'A strong fit for methodical learners who are careful, curious, and persistent.'
+          ]
+        },
+        {
+          id: 'software-developer',
+          name: 'Software Developer',
+          label: 'Build & Create',
+          summary: 'Designs, builds, tests, and improves software that helps people and businesses complete tasks more efficiently.',
+          dayToDay: [
+            'Write code for websites, applications, or internal tools used by a company or customers.',
+            'Work with teammates to design solutions, review code, and troubleshoot bugs.',
+            'Test new features and improve performance, reliability, and user experience.',
+            'Update systems based on feedback, changing requirements, or new business needs.'
+          ],
+          skills: ['HTML/CSS/JavaScript', 'Python or Java', 'Git and version control', 'Problem solving', 'APIs', 'Testing and debugging'],
+          entryLevel: 'Entry-level developers typically need a portfolio of projects, a solid understanding of fundamentals, and strong logic and problem-solving skills. Internship experience, coursework, or personal projects can make a big difference.',
+          salary: '$70,000 - $120,000',
+          traits: ['Persistent', 'Logical', 'Creative problem solver', 'Comfortable with iteration and learning'],
+          highlights: [
+            'Best for people who like building things, debugging problems, and learning new tools.',
+            'A good fit for students who enjoy coding and want to create solutions rather than just analyze data.'
+          ]
+        },
+        {
+          id: 'ux-designer',
+          name: 'UX Designer',
+          label: 'Design & Experience',
+          summary: 'Focuses on making digital products easier, clearer, and more enjoyable for the people using them.',
+          dayToDay: [
+            'Talk with users and learn about their frustrations, goals, and behaviors.',
+            'Create wireframes, mockups, and prototypes for websites or apps.',
+            'Test ideas with users and use feedback to improve the experience.',
+            'Work with developers and product teams to turn design ideas into usable solutions.'
+          ],
+          skills: ['Figma', 'User research', 'Wireframing', 'Prototyping', 'Accessibility', 'Storyboarding'],
+          entryLevel: 'Entry-level UX roles usually benefit from a portfolio showing research, design decisions, and prototypes. Strong communication, empathy, and visual thinking are essential.',
+          salary: '$65,000 - $110,000',
+          traits: ['Empathetic', 'Creative', 'Observant', 'Good listener and collaborator'],
+          highlights: [
+            'Best for people who care about user experience and enjoy turning problems into clear design solutions.',
+            'A strong fit for thoughtful, collaborative learners who enjoy interviews, testing, and iteration.'
+          ]
+        }
+      ];
+
+      // Quiz questions and answer weights.
+      // Each question lists multiple possible answers, each mapped to a role score.
+      const quizQuestions = [
+        {
+          prompt: 'When you are solving a problem, you usually start by:',
+          options: [
+            { text: 'Looking for the patterns in the information and what it means.', score: { 'data-analyst': 2, 'software-developer': 1, 'cybersecurity-analyst': 1, 'ux-designer': 1 } },
+            { text: 'Thinking through how to build or improve a system.', score: { 'software-developer': 2, 'data-analyst': 1, 'cybersecurity-analyst': 1, 'ux-designer': 1 } },
+            { text: 'Checking for risk, security issues, or weak points.', score: { 'cybersecurity-analyst': 2, 'software-developer': 1, 'data-analyst': 1, 'ux-designer': 0 } },
+            { text: 'Understanding how people feel and what they need.', score: { 'ux-designer': 2, 'data-analyst': 1, 'software-developer': 1, 'cybersecurity-analyst': 0 } }
+          ]
+        },
+        {
+          prompt: 'Which workstyle sounds most like you?',
+          options: [
+            { text: 'I like turning messy information into clear insights.', score: { 'data-analyst': 2, 'cybersecurity-analyst': 1, 'software-developer': 1, 'ux-designer': 1 } },
+            { text: 'I enjoy creating tools and solving technical problems.', score: { 'software-developer': 2, 'data-analyst': 1, 'cybersecurity-analyst': 1, 'ux-designer': 1 } },
+            { text: 'I like identifying threats and protecting systems.', score: { 'cybersecurity-analyst': 2, 'software-developer': 1, 'data-analyst': 1, 'ux-designer': 1 } },
+            { text: 'I enjoy researching people and improving experiences.', score: { 'ux-designer': 2, 'data-analyst': 1, 'software-developer': 1, 'cybersecurity-analyst': 0 } }
+          ]
+        },
+        {
+          prompt: 'What kind of project excites you most?',
+          options: [
+            { text: 'A dashboard that helps a team make better decisions.', score: { 'data-analyst': 2, 'software-developer': 1, 'ux-designer': 1, 'cybersecurity-analyst': 0 } },
+            { text: 'A new app, website, or tool that people use every day.', score: { 'software-developer': 2, 'ux-designer': 2, 'data-analyst': 1, 'cybersecurity-analyst': 0 } },
+            { text: 'Protecting systems from attacks or vulnerabilities.', score: { 'cybersecurity-analyst': 2, 'software-developer': 1, 'data-analyst': 1, 'ux-designer': 0 } },
+            { text: 'Understanding users and designing simpler, better experiences.', score: { 'ux-designer': 2, 'software-developer': 1, 'data-analyst': 0, 'cybersecurity-analyst': 0 } }
+          ]
+        },
+        {
+          prompt: 'In a team setting, you are most likely to be the person who:',
+          options: [
+            { text: 'Finds the facts, reads the data, and explains the meaning.', score: { 'data-analyst': 2, 'ux-designer': 1, 'software-developer': 1, 'cybersecurity-analyst': 1 } },
+            { text: 'Builds and tests a digital solution.', score: { 'software-developer': 2, 'ux-designer': 1, 'data-analyst': 0, 'cybersecurity-analyst': 1 } },
+            { text: 'Looks for vulnerabilities and keeps systems safe.', score: { 'cybersecurity-analyst': 2, 'software-developer': 1, 'data-analyst': 0, 'ux-designer': 0 } },
+            { text: 'Listens to user feedback and turns it into better design.', score: { 'ux-designer': 2, 'software-developer': 1, 'data-analyst': 1, 'cybersecurity-analyst': 0 } }
+          ]
+        },
+        {
+          prompt: 'Which environment sounds the most motivating?',
+          options: [
+            { text: 'A business setting where decisions are driven by performance data.', score: { 'data-analyst': 2, 'software-developer': 1, 'cybersecurity-analyst': 1, 'ux-designer': 1 } },
+            { text: 'A technical environment where I can code, debug, and build.', score: { 'software-developer': 2, 'cybersecurity-analyst': 1, 'data-analyst': 1, 'ux-designer': 1 } },
+            { text: 'A security-focused environment where risk and threat detection matter most.', score: { 'cybersecurity-analyst': 2, 'software-developer': 1, 'data-analyst': 0, 'ux-designer': 0 } },
+            { text: 'A user-centered environment where design and empathy drive decisions.', score: { 'ux-designer': 2, 'software-developer': 1, 'data-analyst': 0, 'cybersecurity-analyst': 0 } }
+          ]
+        }
+      ];
+
+      // Interview questions for each role.
+      // These are stored as plain objects so the app can render them dynamically.
+      const interviewBank = {
+        'data-analyst': [
+          {
+            type: 'behavioral',
+            question: 'Tell me about a time you had to solve a problem using incomplete or messy information.',
+            answer: 'A strong answer would explain the situation, the issue with the data, the process you used to clean or verify it, and the result. For example: “I once worked on a project where the spreadsheet had duplicate records and missing values, so I first cleaned the dataset, checked for inconsistencies, and compared the data against the source report. Once the data was reliable, I identified the trend and shared a simple summary with the team, which allowed us to focus on the real issue instead of chasing unreliable numbers.”'
+          },
+          {
+            type: 'technical',
+            question: 'How would you explain a trend in sales data to a manager who is not technical?',
+            answer: 'A strong answer would emphasize translating technical insights into business language. For example: “I would focus on the business story: what changed, why it matters, and what action should be taken. I would highlight the key numbers, explain the trend in plain language, and connect it to business outcomes such as revenue, customer behavior, or product performance.”'
+          },
+          {
+            type: 'behavioral',
+            question: 'Describe a time you had to make a decision with limited information.',
+            answer: 'A strong answer would show structured thinking. For example: “I had to choose which metric to prioritize for a project when the data was limited. I reviewed the most reliable source, narrowed the problem to the business goal, and used the information we did have to make a practical recommendation while documenting assumptions and follow-up checks.”'
+          }
+        ],
+        'cybersecurity-analyst': [
+          {
+            type: 'behavioral',
+            question: 'Tell me about a time you had to stay calm while handling a problem or alert.',
+            answer: 'A strong answer would show composure and process. For example: “When I noticed a suspicious login pattern, I stayed calm, verified the alert, checked for signs of compromise, and reviewed the logs before deciding on next steps. I documented my findings clearly and escalated the issue appropriately, which helped the team respond quickly without overreacting.”'
+          },
+          {
+            type: 'technical',
+            question: 'How would you investigate a possible security alert on a user account?',
+            answer: 'A strong answer would show a step-by-step process: verify whether the alert is real, check login history, review device and location patterns, confirm whether the user was actively accessing the system, and look for suspicious requests or permission changes. I would document findings and escalate if there is evidence of compromise.'
+          },
+          {
+            type: 'behavioral',
+            question: 'How do you handle learning new security tools or concepts quickly?',
+            answer: 'A strong answer would show self-driven learning. For example: “I break the tool or concept into smaller parts, start with the basics, practice in a lab or learning environment, and then apply what I learn to a real scenario. I also like to compare documentation with hands-on examples so I understand both the purpose and the practical use.”'
+          }
+        ],
+        'software-developer': [
+          {
+            type: 'behavioral',
+            question: 'Tell me about a time you had to debug a problem or fix a mistake in your work.',
+            answer: 'A strong answer would explain the root cause and the steps used to fix it. For example: “I ran into an issue where a feature was not working as expected because of a logic error. I reproduced the bug, reviewed the code path, isolated the failing condition, and corrected the logic. After testing it again, I confirmed the issue was resolved and made a note to avoid similar mistakes in the future.”'
+          },
+          {
+            type: 'technical',
+            question: 'What is the difference between a bug and a feature request?',
+            answer: 'A strong answer would clarify that a bug is something that breaks expected behavior or causes incorrect results, while a feature request is a new capability or improvement requested by users or stakeholders. A strong developer evaluates both by understanding user impact, technical feasibility, and business value.'
+          },
+          {
+            type: 'behavioral',
+            question: 'How do you approach learning a new programming language or framework?',
+            answer: 'A strong answer would show both strategy and curiosity. For example: “I start by learning the fundamentals, then build a small project to apply the concepts in context. I look for practical examples, practice consistently, and compare what I learn to tools I already know so I can understand how it fits into the larger system.”'
+          }
+        ],
+        'ux-designer': [
+          {
+            type: 'behavioral',
+            question: 'Tell me about a time you had to improve something based on feedback from another person.',
+            answer: 'A strong answer would show empathy and iteration. For example: “I once received feedback that a process felt confusing to users. I listened carefully, identified the practical pain points, simplified the steps, and tested a revised version to see whether it was easier to follow. The final change improved clarity and made the experience much easier for people to understand.”'
+          },
+          {
+            type: 'technical',
+            question: 'How would you test whether a design is meeting user needs?',
+            answer: 'A strong answer would describe a process that includes user research, observation, and feedback. For example: “I would create a prototype, identify the task I want to test, and ask users to complete it while observing where they struggle. Then I would collect their feedback, compare the results to the original goals, and adjust the design based on the friction points I observed.”'
+          },
+          {
+            type: 'behavioral',
+            question: 'Describe a project where you had to balance user needs with business constraints.',
+            answer: 'A strong answer would show practical decision-making. For example: “I worked on a design idea that met the user goal but was too expensive to build within the current timeline. I used the user feedback to simplify the feature, keep the most important elements, and propose a phased approach so the product still delivered value without overspending.”'
+          }
+        ]
+      };
+
+      /*
+        Utility function to get a role object by ID.
+        This keeps the data model centralized and prevents repeated logic across sections.
+      */
+      function getRoleById(id) {
+        return careerPaths.find((role) => role.id === id) || careerPaths[0];
+      }
+
+      /*
+        Render the role tabs and the selected role detail.
+        This function builds the interface from the array instead of hardcoding each section in HTML.
+      */
+      function renderRoleTabs() {
+        const roleTabs = document.getElementById('roleTabs');
+        roleTabs.innerHTML = '';
+
+        careerPaths.forEach((role) => {
+          const button = document.createElement('button');
+          button.className = 'role-tab';
+          button.type = 'button';
+          button.textContent = role.name;
+          button.dataset.role = role.id;
+
+          if (role.id === 'data-analyst') {
+            button.classList.add('active');
+          }
+
+          button.addEventListener('click', () => {
+            document.querySelectorAll('.role-tab').forEach((tab) => tab.classList.remove('active'));
+            button.classList.add('active');
+            renderSelectedRole(role.id);
+          });
+
+          roleTabs.appendChild(button);
+        });
+
+        renderSelectedRole('data-analyst');
+      }
+
+      function renderSelectedRole(roleId) {
+        const role = getRoleById(roleId);
+        const roleCard = document.getElementById('roleCard');
+        const roleDetail = document.getElementById('roleDetail');
+
+        // The summary card gives the user a quick job snapshot.
+        roleCard.innerHTML = `
+          <h3>${role.name}</h3>
+          <p><strong>${role.label}</strong></p>
+          <p>${role.summary}</p>
+          <ul>
+            <li><strong>Salary:</strong> ${role.salary}</li>
+            <li><strong>Entry-level:</strong> ${role.entryLevel.split(' ').slice(0, 10).join(' ')}...</li>
+          </ul>
+        `;
+
+        // The detail panel dives into responsibilities, tools, and candidate traits.
+        roleDetail.innerHTML = `
+          <h3>${role.name}</h3>
+          <div class="detail-grid">
+            <div class="mini-card">
+              <h4>Day-to-day work</h4>
+              <ul>
+                ${role.dayToDay.map((task) => `<li>${task}</li>`).join('')}
+              </ul>
+            </div>
+            <div class="mini-card">
+              <h4>Skills & tools</h4>
+              <ul>
+                ${role.skills.map((skill) => `<li>${skill}</li>`).join('')}
+              </ul>
+            </div>
+            <div class="mini-card">
+              <h4>Entry-level expectations</h4>
+              <p>${role.entryLevel}</p>
+            </div>
+            <div class="mini-card">
+              <h4>Strong candidate traits</h4>
+              <ul>
+                ${role.traits.map((trait) => `<li>${trait}</li>`).join('')}
+              </ul>
+            </div>
+          </div>
+        `;
+      }
+
+      /*
+        Render the personality quiz dynamically.
+        The user sees real questions and options, but the app stores the data in one array.
+      */
+      function renderQuiz() {
+        const quizContainer = document.getElementById('quizContainer');
+        quizContainer.innerHTML = '';
+
+        quizQuestions.forEach((question, index) => {
+          const block = document.createElement('div');
+          block.className = 'question-block';
+
+          const title = document.createElement('h3');
+          title.textContent = `${index + 1}. ${question.prompt}`;
+          block.appendChild(title);
+
+          const list = document.createElement('div');
+          list.className = 'choice-list';
+
+          question.options.forEach((option) => {
+            const label = document.createElement('label');
+            const input = document.createElement('input');
+            input.type = 'radio';
+            input.name = `question-${index}`;
+            input.value = JSON.stringify(option.score);
+
+            label.appendChild(input);
+            label.appendChild(document.createTextNode(option.text));
+            list.appendChild(label);
+          });
+
+          block.appendChild(list);
+          quizContainer.appendChild(block);
+        });
+      }
+
+      function calculateQuizResults() {
+        const questionBlocks = document.querySelectorAll('#quizContainer .question-block');
+        const scores = {
+          'data-analyst': 0,
+          'cybersecurity-analyst': 0,
+          'software-developer': 0,
+          'ux-designer': 0,
+        };
+
+        let answeredAll = true;
+
+        questionBlocks.forEach((block, index) => {
+          const selected = block.querySelector('input:checked');
+
+          if (!selected) {
+            answeredAll = false;
+            return;
+          }
+
+          const scoreMap = JSON.parse(selected.value);
+          Object.entries(scoreMap).forEach(([roleId, value]) => {
+            scores[roleId] += value;
+          });
+        });
+
+        const resultsBox = document.getElementById('quizResults');
+
+        if (!answeredAll) {
+          resultsBox.classList.remove('hidden');
+          resultsBox.innerHTML = '<h3>Almost there.</h3><p>Please answer every question before viewing your results.</p>';
+          return;
+        }
+
+        const sortedRoles = Object.entries(scores)
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, 2)
+          .map(([roleId, score]) => ({
+            role: getRoleById(roleId),
+            score: score
+          }));
+
+        resultsBox.classList.remove('hidden');
+        resultsBox.innerHTML = `
+          <h3>Your top matches</h3>
+          <div class="result-grid">
+            ${sortedRoles.map(({ role }) => `
+              <div class="result-card">
+                <h4>${role.name}</h4>
+                <p>${role.summary}</p>
+                <ul>
+                  ${role.highlights.map((item) => `<li>${item}</li>`).join('')}
+                </ul>
+              </div>
+            `).join('')}
+          </div>
+        `;
+
+        resultsBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
+      /*
+        Interview prep logic.
+        The user selects a role, reads questions, writes an answer, and clicks a button to reveal a strong sample response.
+      */
+      function renderRoleSelector() {
+        const roleSelect = document.getElementById('roleSelect');
+        roleSelect.innerHTML = '';
+
+        careerPaths.forEach((role) => {
+          const option = document.createElement('option');
+          option.value = role.id;
+          option.textContent = role.name;
+          roleSelect.appendChild(option);
+        });
+
+        roleSelect.value = 'data-analyst';
+        roleSelect.addEventListener('change', () => renderInterviewQuestions(roleSelect.value));
+      }
+
+      function renderInterviewQuestions(selectedRoleId = 'data-analyst') {
+        const interviewQuestions = document.getElementById('interviewQuestions');
+        const questions = interviewBank[selectedRoleId] || interviewBank['data-analyst'];
+
+        interviewQuestions.innerHTML = questions
+          .map((item, index) => {
+            return `
+              <div class="question-card">
+                <h4>${index + 1}. ${item.question}</h4>
+                <p><em>${item.type === 'behavioral' ? 'Behavioral question' : 'Technical question'}</em></p>
+                <textarea id="answer-${selectedRoleId}-${index}" placeholder="Type your answer here..."></textarea>
+                <button class="btn btn-secondary reveal-answer" data-role="${selectedRoleId}" data-index="${index}" style="margin-top: 12px;">Reveal strong answer</button>
+                <div class="answer-box" id="answer-box-${selectedRoleId}-${index}">
+                  <strong>Strong version:</strong><br />
+                  ${item.answer}
+                </div>
+              </div>
+            `;
+          })
+          .join('');
+
+        document.querySelectorAll('.reveal-answer').forEach((button) => {
+          button.addEventListener('click', () => {
+            const roleId = button.dataset.role;
+            const idx = button.dataset.index;
+            const answerBox = document.getElementById(`answer-box-${roleId}-${idx}`);
+            answerBox.classList.add('visible');
+          });
+        });
+      }
+
+      /*
+        Event listeners for the homepage button navigation.
+        These buttons scroll the user to the relevant section.
+      */
+      document.querySelectorAll('[data-target]').forEach((button) => {
+        button.addEventListener('click', () => {
+          const targetId = button.dataset.target;
+          const target = document.getElementById(targetId);
+          if (target) {
+            target.classList.remove('hidden');
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+
+      // Initialize the app when the page loads.
+      renderRoleTabs();
+      renderQuiz();
+      renderRoleSelector();
+      renderInterviewQuestions();
+      document.getElementById('submitQuiz').addEventListener('click', calculateQuizResults);
+    </script>
+  </body>
+</html>
