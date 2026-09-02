@@ -515,7 +515,7 @@
         <div class="brand">Information System Career Exploration</div>
         <nav class="nav" aria-label="Main navigation">
           <a href="#" data-page-nav="home-page">Home</a>
-          <a href="#explore">Career Paths</a>
+          <a href="#" data-page-nav="home-page" data-target="explore">Career Paths</a>
           <a href="#" data-page-nav="behavioral-page">Behavioral Interview Practice</a>
           <a href="#" data-page-nav="technical-page">Technical Interview Practice</a>
         </nav>
@@ -1282,8 +1282,20 @@
       document.querySelectorAll('[data-page-nav]').forEach((button) => {
         button.addEventListener('click', () => {
           const pageId = button.dataset.pageNav;
+          const targetId = button.dataset.target;
+
           showPage(pageId);
-          window.scrollTo({ top: 0, behavior: 'smooth' });
+
+          if (targetId) {
+            setTimeout(() => {
+              const target = document.getElementById(targetId);
+              if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }, 0);
+          } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
         });
       });
 
