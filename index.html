@@ -94,7 +94,11 @@
       }
 
       .hero {
-        padding: 56px 0 32px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        min-height: calc(100svh - 72px);
+        padding: 48px 0 92px;
       }
 
       .hero-grid {
@@ -186,8 +190,74 @@
         border-radius: 14px;
       }
 
+      .scroll-cue {
+        position: absolute;
+        left: 50%;
+        bottom: 22px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 7px;
+        padding: 6px 16px;
+        color: var(--muted);
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        transform: translateX(-50%);
+        transition: color 0.2s ease;
+      }
+
+      .scroll-cue:hover {
+        color: var(--primary);
+      }
+
+      .scroll-cue.is-hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .scroll-cue-arrow {
+        width: 12px;
+        height: 12px;
+        border-right: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+        transform: rotate(45deg);
+        animation: scrollCue 1.6s ease-in-out infinite;
+      }
+
+      .scroll-reveal {
+        opacity: 0;
+        transform: translateY(36px);
+        transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .scroll-reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @keyframes scrollCue {
+        0%, 100% {
+          transform: translateY(-3px) rotate(45deg);
+          opacity: 0.55;
+        }
+        50% {
+          transform: translateY(4px) rotate(45deg);
+          opacity: 1;
+        }
+      }
+
       .section {
         padding: 28px 0 10px;
+      }
+
+      #about {
+        scroll-margin-top: 104px;
+      }
+
+      .overview-stage {
+        min-height: calc(100svh - 72px);
+        padding-bottom: 72px;
       }
 
       .section h2 {
@@ -339,7 +409,7 @@
       .result-grid {
         display: grid;
         gap: 16px;
-        grid-template-columns: repeat(2, minmax(220px, 1fr));
+        grid-template-columns: repeat(3, minmax(220px, 1fr));
       }
 
       .result-card h4 {
@@ -358,6 +428,72 @@
         gap: 10px;
         flex-wrap: wrap;
         margin-bottom: 18px;
+      }
+
+      .career-choice-grid {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .career-choice {
+        min-height: 150px;
+        text-align: left;
+      }
+
+      .career-choice span {
+        display: block;
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 0.92rem;
+        font-weight: 400;
+      }
+
+      .subpage-shell {
+        padding: 48px 0 64px;
+      }
+
+      .subpage-header {
+        margin-bottom: 24px;
+      }
+
+      .subpage-header h1 {
+        color: var(--primary-dark);
+        font-size: clamp(2rem, 4vw, 3rem);
+        line-height: 1.15;
+        margin-bottom: 10px;
+      }
+
+      .subpage-header p {
+        max-width: 760px;
+        color: var(--muted);
+      }
+
+      .result-card-link {
+        display: block;
+        width: 100%;
+        text-align: left;
+        color: var(--text);
+        font: inherit;
+        cursor: pointer;
+        transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .result-card-link:hover {
+        transform: translateY(-2px);
+        border-color: #bfd2ff;
+        box-shadow: var(--shadow);
+      }
+
+      .result-rank {
+        display: inline-block;
+        margin-bottom: 10px;
+        padding: 5px 9px;
+        border-radius: 999px;
+        background: var(--panel-alt);
+        color: var(--primary);
+        font-size: 0.78rem;
+        font-weight: 700;
       }
 
       .role-tab {
@@ -849,20 +985,43 @@
           padding: 14px 0;
         }
 
+        .hero {
+          min-height: auto;
+          padding: 44px 0 84px;
+        }
+
         .star-grid,
-        .feedback-grid {
+        .feedback-grid,
+        .career-choice-grid {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
       }
 
       @media (max-width: 520px) {
         .star-grid,
-        .feedback-grid {
+        .feedback-grid,
+        .career-choice-grid {
           grid-template-columns: 1fr;
         }
 
         .behavioral-shell {
           padding-top: 32px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        .scroll-cue-arrow {
+          animation: none;
+        }
+
+        .scroll-reveal {
+          opacity: 1;
+          transform: none;
+          transition: none;
         }
       }
     </style>
@@ -873,7 +1032,7 @@
         <div class="brand">Information System Career Exploration</div>
         <nav class="nav" aria-label="Main navigation">
           <a href="#" data-page-nav="home-page">Home</a>
-          <a href="#" data-page-nav="home-page" data-target="explore">Career Paths</a>
+          <a href="#careerChoices" data-home-target="careerChoices">Career Paths</a>
           <a href="#" data-page-nav="behavioral-page">Behavioral Interview Practice</a>
           <a href="#" data-page-nav="technical-page">Technical Interview Practice</a>
         </nav>
@@ -893,8 +1052,8 @@
                 that help organizations run smarter and serve people better.
               </p>
               <div class="cta-row">
-                <button class="btn btn-primary" data-target="quiz">Take the career fit quiz</button>
-                <button class="btn btn-secondary" data-target="explore">Explore career paths</button>
+                <button class="btn btn-primary" data-page-nav="quiz-page">Take the career fit quiz</button>
+                <button class="btn btn-secondary" data-home-target="careerChoices">Explore career paths</button>
               </div>
             </div>
 
@@ -907,9 +1066,14 @@
               ></iframe>
             </div>
           </div>
+          <a class="scroll-cue" href="#about" aria-label="Scroll to learn about Information Systems">
+            <span>Discover more</span>
+            <span class="scroll-cue-arrow" aria-hidden="true"></span>
+          </a>
         </section>
 
-        <section id="about" class="section">
+        <div class="overview-stage">
+        <section id="about" class="section scroll-reveal">
           <div class="container">
             <h2>What is Information Systems?</h2>
             <p>
@@ -940,16 +1104,16 @@
           </div>
         </section>
 
-        <section class="section choice-panel">
+        <section class="section choice-panel scroll-reveal">
           <div class="container">
             <h2>Choose your next step</h2>
             <div class="option-grid">
-              <button class="option-card" data-target="quiz">
+              <button class="option-card" data-page-nav="quiz-page">
                 <strong>Option 1</strong>
                 <h3>Career Fit Quiz</h3>
                 <p>Answer a few quick questions to discover which Information Systems roles may fit you best.</p>
               </button>
-              <button class="option-card" data-target="explore">
+              <button class="option-card" data-home-target="careerChoices">
                 <strong>Option 2</strong>
                 <h3>Explore the Careers</h3>
                 <p>Browse the main IS job paths, compare responsibilities, and learn what each role is like.</p>
@@ -957,34 +1121,49 @@
             </div>
           </div>
         </section>
+        </div>
 
-        <section id="quiz" class="section panel hidden">
-          <div class="container">
-            <h2>Career Path Discovery Quiz</h2>
-            <p>
-              This quick test is designed to point you toward two good-fit roles within Information Systems.
-              Choose the answer that feels most natural to you.
-            </p>
-
-            <div class="quiz-box" id="quizContainer"></div>
-            <div class="cta-row">
-              <button id="submitQuiz" class="btn btn-primary">See my matches</button>
-            </div>
-            <div id="quizResults" class="results-box hidden"></div>
-          </div>
-        </section>
-
-        <section id="explore" class="section panel">
+        <section id="careerChoices" class="section panel scroll-reveal">
           <div class="container">
             <h2>Career Paths in Information Systems</h2>
-            <div id="roleTabs" class="role-tabs" aria-label="Career role tabs"></div>
-
-            <div class="role-layout">
-              <aside id="roleCard" class="role-card"></aside>
-              <div id="roleDetail" class="detail-card"></div>
-            </div>
+            <p>Choose a field to explore its responsibilities, skills, and entry-level expectations.</p>
+            <div id="careerChoiceGrid" class="career-choice-grid"></div>
           </div>
         </section>
+      </section>
+
+      <section id="quiz-page" class="page">
+        <div class="container subpage-shell">
+          <div class="subpage-header">
+            <span class="eyebrow">Career Discovery</span>
+            <h1>Career Path Quiz</h1>
+            <p>Answer each question to discover your top three Information Systems career matches.</p>
+          </div>
+          <div class="quiz-box" id="quizContainer"></div>
+          <div class="cta-row">
+            <button id="submitQuiz" class="btn btn-primary" type="button">See my matches</button>
+            <button class="btn btn-secondary" type="button" data-page-nav="home-page">Back to Home</button>
+          </div>
+          <div id="quizResults" class="results-box hidden"></div>
+        </div>
+      </section>
+
+      <section id="career-detail-page" class="page">
+        <div class="container subpage-shell">
+          <div class="subpage-header">
+            <span class="eyebrow">Career Path</span>
+            <h1 id="careerDetailTitle">Career Information</h1>
+            <p id="careerDetailSummary"></p>
+          </div>
+          <div class="role-layout">
+            <aside id="roleCard" class="role-card"></aside>
+            <div id="roleDetail" class="detail-card"></div>
+          </div>
+          <div class="cta-row">
+            <button class="btn btn-secondary" type="button" data-home-target="careerChoices">All Career Paths</button>
+            <button class="btn btn-primary" type="button" data-page-nav="quiz-page">Take the Career Quiz</button>
+          </div>
+        </div>
       </section>
 
       <section id="behavioral-page" class="page">
@@ -1538,37 +1717,34 @@
         Render the role tabs and the selected role detail.
         This function builds the interface from the array instead of hardcoding each section in HTML.
       */
-      function renderRoleTabs() {
-        const roleTabs = document.getElementById('roleTabs');
-        roleTabs.innerHTML = '';
+      function renderCareerChoices() {
+        const careerChoiceGrid = document.getElementById('careerChoiceGrid');
 
-        careerPaths.forEach((role) => {
-          const button = document.createElement('button');
-          button.className = 'role-tab';
-          button.type = 'button';
-          button.textContent = role.name;
-          button.dataset.role = role.id;
+        careerChoiceGrid.innerHTML = careerPaths.map((role) => `
+          <button class="btn btn-secondary career-choice" type="button" data-career-id="${role.id}">
+            ${role.name}
+            <span>${role.label}</span>
+          </button>
+        `).join('');
 
-          if (role.id === 'data-analyst') {
-            button.classList.add('active');
-          }
-
-          button.addEventListener('click', () => {
-            document.querySelectorAll('.role-tab').forEach((tab) => tab.classList.remove('active'));
-            button.classList.add('active');
-            renderSelectedRole(role.id);
-          });
-
-          roleTabs.appendChild(button);
+        careerChoiceGrid.querySelectorAll('[data-career-id]').forEach((button) => {
+          button.addEventListener('click', () => openCareerPage(button.dataset.careerId));
         });
+      }
 
-        renderSelectedRole('data-analyst');
+      function openCareerPage(roleId) {
+        renderSelectedRole(roleId);
+        showPage('career-detail-page');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
 
       function renderSelectedRole(roleId) {
         const role = getRoleById(roleId);
         const roleCard = document.getElementById('roleCard');
         const roleDetail = document.getElementById('roleDetail');
+
+        document.getElementById('careerDetailTitle').textContent = role.name;
+        document.getElementById('careerDetailSummary').textContent = role.summary;
 
         // The summary card gives the user a quick job snapshot.
         roleCard.innerHTML = `
@@ -1669,7 +1845,9 @@
 
           const scoreMap = JSON.parse(selected.value);
           Object.entries(scoreMap).forEach(([roleId, value]) => {
-            scores[roleId] += value;
+            if (Object.prototype.hasOwnProperty.call(scores, roleId)) {
+              scores[roleId] += value;
+            }
           });
         });
 
@@ -1683,7 +1861,7 @@
 
         const sortedRoles = Object.entries(scores)
           .sort((a, b) => b[1] - a[1])
-          .slice(0, 2)
+          .slice(0, 3)
           .map(([roleId, score]) => ({
             role: getRoleById(roleId),
             score: score
@@ -1693,17 +1871,20 @@
         resultsBox.innerHTML = `
           <h3>Your top matches</h3>
           <div class="result-grid">
-            ${sortedRoles.map(({ role }) => `
-              <div class="result-card">
+            ${sortedRoles.map(({ role }, index) => `
+              <button class="result-card result-card-link" type="button" data-result-role="${role.id}">
+                <span class="result-rank">#${index + 1} Match</span>
                 <h4>${role.name}</h4>
                 <p>${role.summary}</p>
-                <ul>
-                  ${role.highlights.map((item) => `<li>${item}</li>`).join('')}
-                </ul>
-              </div>
+                <span>View career information</span>
+              </button>
             `).join('')}
           </div>
         `;
+
+        resultsBox.querySelectorAll('[data-result-role]').forEach((card) => {
+          card.addEventListener('click', () => openCareerPage(card.dataset.resultRole));
+        });
 
         resultsBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
@@ -1956,9 +2137,61 @@
         });
       });
 
+      document.querySelectorAll('[data-home-target]').forEach((button) => {
+        button.addEventListener('click', (event) => {
+          event.preventDefault();
+          const targetId = button.dataset.homeTarget;
+          showPage('home-page');
+          requestAnimationFrame(() => {
+            document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          });
+        });
+      });
+
+      function initializeScrollReveals() {
+        const revealSections = document.querySelectorAll('.scroll-reveal');
+
+        if (!('IntersectionObserver' in window)) {
+          revealSections.forEach((section) => section.classList.add('is-visible'));
+          return;
+        }
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.14,
+          rootMargin: '0px 0px -8% 0px'
+        });
+
+        revealSections.forEach((section) => revealObserver.observe(section));
+      }
+
+      function initializeScrollCue() {
+        const scrollCue = document.querySelector('.scroll-cue');
+        const hero = document.querySelector('#home-page .hero');
+
+        if (!scrollCue || !hero) return;
+
+        const updateScrollCue = () => {
+          const heroBottom = hero.getBoundingClientRect().bottom;
+          scrollCue.classList.toggle('is-hidden', heroBottom < window.innerHeight * 0.72);
+        };
+
+        scrollCue.addEventListener('click', () => scrollCue.classList.add('is-hidden'));
+        window.addEventListener('scroll', updateScrollCue, { passive: true });
+        updateScrollCue();
+      }
+
       // Initialize the app when the page loads.
       showPage('home-page');
-      renderRoleTabs();
+      initializeScrollReveals();
+      initializeScrollCue();
+      renderCareerChoices();
       renderQuiz();
       renderRoleSelector();
       renderInterviewQuestions();
