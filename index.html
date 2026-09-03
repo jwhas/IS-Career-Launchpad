@@ -190,6 +190,47 @@
         border-radius: 14px;
       }
 
+      .video-placeholder {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 300px;
+        background: linear-gradient(135deg, #eef4fa 0%, #edf0f2 100%);
+        border-radius: 14px;
+        border: 1px solid rgba(19, 70, 108, 0.12);
+        color: var(--primary);
+        text-align: center;
+        padding: 24px;
+      }
+
+      .video-icon {
+        width: 72px;
+        height: 72px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: rgba(17, 110, 173, 0.12);
+        font-size: 2.2rem;
+        margin-bottom: 16px;
+      }
+
+      .video-placeholder p {
+        margin: 0 0 18px;
+        font-size: 1.05rem;
+        line-height: 1.6;
+        color: var(--dark);
+      }
+
+      .video-fallback {
+        display: block;
+        margin-top: 10px;
+        color: var(--primary);
+        font-size: 0.82rem;
+        font-weight: 700;
+        text-align: center;
+      }
+
       .scroll-cue {
         position: absolute;
         left: 50%;
@@ -1058,12 +1099,26 @@
             </div>
 
             <div class="video-card">
-              <iframe
-                src="https://www.youtube.com/embed/ykYTHgX-oJM"
-                title="Introduction video"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-              ></iframe>
+              <div class="video-placeholder">
+                <div class="video-icon" aria-hidden="true">▶</div>
+                <p>Learn the basics of Information Systems and the kinds of careers it leads to.</p>
+                <a
+                  class="btn btn-primary"
+                  href="https://www.youtube.com/results?search_query=what+is+information+systems+career+overview"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  Watch overview on YouTube
+                </a>
+              </div>
+              <a
+                class="video-fallback"
+                href="https://www.youtube.com/results?search_query=what+is+information+systems+career+overview"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                Open the best overview video on YouTube
+              </a>
             </div>
           </div>
           <a class="scroll-cue" href="#about" aria-label="Scroll to learn about Information Systems">
